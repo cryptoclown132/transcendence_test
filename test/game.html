@@ -20,11 +20,18 @@
  
 
   <div class="game-invitation">
-    <label for="userName" class="enter-name-text">Enter the name of the user to challenge to a game:</label>
-    <div class="input-group mb-3">
-      <input type="text" class="form-control input-user-field" placeholder="Username" aria-label="Recipient's username" aria-describedby="button-addon2">
+    <!-- <div class="input-group mb-3"> -->
+      <label for="userName" class="enter-name-text">Enter the name of the user to challenge to a game:</label>
+      <input type="text" class="form-control input-user-field" placeholder="Username" aria-label="Recipient's username" aria-describedby="button-addon2" required>
       <button class="send-invite-btn btn-outline-secondary" type="button" id="button-addon2">Send Invitation</button>
-    </div>
+    <!-- </div> -->
+  </div>
+
+
+  <div class="loader">
+    <div class="loading-text">Loading <span class="loading-animation"></span></div>
+
+    <!-- <div class="load-symbol"></div> -->
   </div>
   
   <div class="game-screen">
@@ -42,7 +49,9 @@
       <p>Player 2: Jane</p>
     </div>
   </div>
-  <!-- </div> -->
+  </div>
+
+ 
   
 
   
@@ -50,11 +59,11 @@
   
   <div id="waitingScreen" style="display: none;">
     <h1>WAITING FOR THE SECOND PLAYER</h1>
-  </div> -->
+  </div>
   
   
   
-  <canvas id="pongCanvas" width="800" height="400"></canvas>
+  <canvas id="pongCanvas" width="800" height="400"></canvas> -->
 
   <script src="app.js"></script>
 </body>

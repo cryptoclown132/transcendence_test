@@ -65,14 +65,16 @@ Variables
 body, html {
   height: 100%;
   margin: 0;
+  overflow: hidden;
 }
 
 .start-screen {
   background-image: url('pongComic.jpg');
   background-size: cover;
   background-position: center;
+  margin: 0;
+  background-repeat: no-repeat;
   height: 100%; 
-  /* display: flex; */
 }
 
 .centered-container {
@@ -115,11 +117,14 @@ button:hover {
 }
 
 .input-user-field {
-  width: 200px; /* Adjust the width as needed */
-  margin: 0 auto; /* Centers the input field */
+  height: 40px;
+  width: 50%; /* Adjust the width as needed */
+  margin: 0 auto;
 }
 
 .enter-name-text {
+  font-size: 40px;
+  /* height:px; */
   color: rgb(19, 141, 78);
 }
 
@@ -158,6 +163,62 @@ button:hover {
 
   box-shadow: 0px 0px 10px hsl(205, 78%, 60%);
 }
+
+.loader {
+  background-image: url('tableTennisLogo.jpg');
+  background-size: cover;
+  background-position: center;
+  height: 100%;
+  flex: 1;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 15px;  
+}
+
+/* .load-symbol {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 8px solid #f3f3f3;
+  border-top: 8px solid #3498db;
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+} */
+
+
+.loading-text {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.loading-animation::after {
+  content: '';
+  display: inline-block;
+  overflow: hidden;
+  width: 1.2em;
+  white-space: nowrap;
+  animation: dots 1.5s infinite;
+}
+
+@keyframes dots {
+  0%, 20% { content: '.'; }
+  40% { content: '..'; }
+  60% { content: '...'; }
+  80%, 100% { content: ''; }
+}
+
+
+
 
 .show {
   display: flex;
