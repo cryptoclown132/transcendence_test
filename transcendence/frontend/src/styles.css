@@ -74,13 +74,14 @@ body, html {
 
 .game-site {
   height: 100vh;
+  transition: margin-left 0.8s ease;
 }
 
 .start-screen {
   position: static;
   overflow: hidden;
   margin: auto;
-  background: url("ballWithEye.jpg") no-repeat center;
+  background: url("pongComic.jpg") no-repeat center;
   background-size: cover;
 
   /* background-image: url('pongComic.jpg');
@@ -98,7 +99,6 @@ body, html {
   justify-content: center;
   align-items: center;
   height: 100%;
-  /* transition: margin-left 0.8s ease; */
 }
 
 
@@ -121,7 +121,7 @@ button:hover {
   background-image: url('tennisTable.jpg'); /* Replace 'path/to/your/image.jpg' with the path to your image */
   background-size: cover;
   background-position: center;
-  /* height: 100vh;  */
+  height: 100%; 
   flex: 1;
   display: none;
   flex-direction: column;
@@ -156,6 +156,8 @@ button:hover {
 	align-items: center;
 	justify-content: space-between;
 	text-align: center;
+
+  /* height: 100%; */
 }
 
 .playerInfo {
@@ -187,7 +189,7 @@ button:hover {
   background-image: url('tableTennisLogo.jpg');
   background-size: cover;
   background-position: center;
-  /* height: 100%; */
+  height: 100%;
   /* height: 100vh;  */
   flex: 1;
   display: none;
@@ -380,6 +382,11 @@ button:hover {
 .clicked_contact_div {
     background-color: red;
     padding: 100px;
+}
+
+.chat {
+  height: 100vh;
+  transition: margin-left 0.8s ease;
 }
 
 .contacts-in-chat-profile {
@@ -779,7 +786,7 @@ cursor: pointer; */
 
 .sidebar-toggler {
   position: fixed;
-  top: 20px;
+  bottom: 20px;
   right: 20px;
   /* width: 50px; */
   /* height: 50px; */
@@ -841,6 +848,11 @@ cursor: pointer; */
     width: 400px;
   }
 } */
+
+.home {
+  height: 100vh;
+  transition: margin-left 0.8s ease;
+}
 
 .sidebar-btn-home {
   display: block;
@@ -995,9 +1007,3 @@ cursor: pointer; */
 
 
 
-
-/* 
-put slide for image
-put height for all at once with one class
-put button right bottom corrner
-*/
