@@ -64,6 +64,45 @@ body, html {
   overflow: hidden;
 }
 
+.home {
+  /* background-image: url('./ballWithEye.jpg'); */
+  background-size: cover; /* Cover the entire background */
+  background-position: center; /* Center the background */
+  padding: 20px; /* Add some padding for better readability */
+  text-align: center; /* Center the content horizontally */
+  color: rgb(255, 255, 255); /* Text color */
+  height: 100vh;
+  background-color: hsl(135, 59.5%, 29%);
+  transition: margin-left 0.8s ease;
+}
+/* position: fixed;
+bottom: 20px;
+right: 20px;
+border-radius: 50%; */
+
+
+.logout-btn {
+  /* position: absolute; */
+  position: fixed;
+  top: 30px;
+  right: 30px;
+}
+
+.centered-image {
+  background-image: url('./ballWithEye.jpg');
+  background-size: cover;
+  background-position: center;
+  width: 95vh;
+  height: 62vh;
+  position: absolute;
+  /* position: fixed; */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: margin-left 0.8s ease;
+}
+
+
 #pongCanvas {
   width: 70vw;
   height: 35vw;
@@ -997,6 +1036,105 @@ cursor: pointer; */
 }
 
 
+/* Profile Stats */
+
+.profile-site {
+  height: 100vh;
+  transition: margin-left 0.8s ease;
+}
+
+.profile, .panel {
+  max-width: 600px;
+  margin: 50px auto;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.profile-header {
+  text-align: center;
+  padding: 20px;
+}
+
+.profile-picture {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  margin-bottom: 20px;
+}
+
+.profile-name {
+  margin: 0;
+  font-size: 24px;
+  color: #333;
+}
+
+.profile-bio {
+  margin: 10px 0;
+  color: #666;
+}
+
+.profile-details,
+.game-stats {
+  padding: 20px;
+}
+
+.section-heading {
+  margin-top: 0;
+  color: #333;
+}
+
+.details-list,
+.stats-list {
+  list-style: none;
+  padding: 0;
+}
+
+.details-list li,
+.stats-list li {
+  margin-bottom: 10px;
+}
+
+.details-list li strong,
+.stats-list li strong {
+  color: #333;
+  margin-right: 5px;
+}
+
+.panel {
+  width: 300px;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  padding: 20px;
+}
+.status {
+  margin-top: 20px;
+  padding: 10px;
+  border-radius: 5px;
+}
+.status .indicator {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-right: 5px;
+}
+.online {
+  background-color: green;
+}
+.offline {
+  background-color: red;
+}
+.stats {
+  margin-top: 20px;
+}
+.stats-item {
+  margin-bottom: 10px;
+}
+.stats-item span {
+  font-weight: bold;
+  margin-right: 5px;
+}
 
 
 .shrink {

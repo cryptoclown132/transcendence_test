@@ -24,6 +24,18 @@ function addEventListenersIsAuth() {
   }
   loadContentChat('html/chat.html', 'chat');
 
+ 
+  function loadContentProfile(file, targetId) {
+    fetch(file)
+        .then(response => response.text())
+        .then(html => {
+          document.getElementById(targetId).innerHTML = html;
+          chatDom();
+        })
+        .catch(error => console.error('Error loading content:', error));
+  }
+  loadContentProfile('html/profile.html', 'profileSite');
+
   document.getElementById('homeButton').addEventListener('click', function () {
     showSiteHideOthers('homeSite')
   })
@@ -45,34 +57,35 @@ function addEventListenersIsAuth() {
   })
 
   document.getElementById('profileButton').addEventListener('click', function () {
-    const userModal = new bootstrap.Modal(document.getElementById('userProfileModal2'));
-    const label = document.getElementById('userModalLabel2');
-    label.innerHTML = `<h5>${websocket_obj.username}</h5>`;
-    const modalBody = document.getElementById('userProfileModalBody2');
-    modalBody.innerHTML = `
-      <div id="previewContainer">
-        <img id="previewImage" alt="Profile Preview">
-        <div id="onHoverText">CHANGE PROFILEPICTURE</div>
-      </div>
-      <form id="profileForm">
-        <span id="selectedFileName"></span>
-        <input type="file" id="profilePictureInput" accept="image/*" style="display: none;" onchange="submitForm()">
-      </form>
-      <p>Name: ${websocket_obj.username}</p><p>ID: ${websocket_obj.user_id}</p>`
-    document.getElementById('previewImage').src = websocket_obj.avatar;
-    const previewContainer = document.getElementById('previewContainer');
-    previewContainer.style.display = 'block';
-    previewContainer.addEventListener('click', function () {
-      document.getElementById('profilePictureInput').click();
-    });
-    userModal.show();
+    showSiteHideOthers('profileSite')
+  //   const userModal = new bootstrap.Modal(document.getElementById('userProfileModal2'));
+  //   const label = document.getElementById('userModalLabel2');
+  //   label.innerHTML = `<h5>${websocket_obj.username}</h5>`;
+  //   const modalBody = document.getElementById('userProfileModalBody2');
+  //   modalBody.innerHTML = `
+  //     <div id="previewContainer">
+  //       <img id="previewImage" alt="Profile Preview">
+  //       <div id="onHoverText">CHANGE PROFILEPICTURE</div>
+  //     </div>
+  //     <form id="profileForm">
+  //       <span id="selectedFileName"></span>
+  //       <input type="file" id="profilePictureInput" accept="image/*" style="display: none;" onchange="submitForm()">
+  //     </form>
+  //     <p>Name: ${websocket_obj.username}</p><p>ID: ${websocket_obj.user_id}</p>`
+  //   document.getElementById('previewImage').src = websocket_obj.avatar;
+  //   const previewContainer = document.getElementById('previewContainer');
+  //   previewContainer.style.display = 'block';
+  //   previewContainer.addEventListener('click', function () {
+  //     document.getElementById('profilePictureInput').click();
+  //   });
+  //   userModal.show();
   })
 }
 
 function showSiteHideOthers(site_to_show) {
   console.log(site_to_show);
 
-  const sites = ['gameSite', 'nothingSite', 'homeSite', 'chat'];
+  const sites = ['gameSite', 'nothingSite', 'homeSite', 'chat', 'profileSite'];
   sites.forEach(site => {
     if (site === site_to_show) showDiv(site)
     else hideDiv(site)
@@ -155,9 +168,21 @@ function handleDOMChanges() {
   const sidebar = document.getElementById("sidebar")
   const sidebarToggle = document.getElementById("sidebar-toggler");
 
+  const homeSite = document.getElementById("homeSite");
+  const homeImage = document.getElementById("centered-image");
+
   if (!sidebarToggle.hasEventListener) {
     sidebarToggle.addEventListener('click', function () {
       sidebar.classList.toggle("show-sidebar");
+      
+      if (sidebar.classList.contains("show-sidebar")){
+        homeSite.classList.add("shrink");
+        homeImage.classList.add("shrink");
+      }
+      else {
+        homeSite.classList.remove("shrink");
+        homeImage.classList.remove("shrink");
+      }
     });
     sidebarToggle.hasEventListener = true; 
   }

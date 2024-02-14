@@ -64,6 +64,35 @@ body, html {
   overflow: hidden;
 }
 
+.home {
+    /* background-image: url('./ballWithEye.jpg'); */
+    background-size: cover; /* Cover the entire background */
+    background-position: center; /* Center the background */
+    padding: 20px; /* Add some padding for better readability */
+    text-align: center; /* Center the content horizontally */
+    color: rgb(255, 255, 255); /* Text color */
+    height: 100vh;
+    background-color: hsl(135, 59.5%, 29%);
+}
+
+.logout-btn {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+}
+
+.centered-image {
+  background-image: url('./ballWithEye.jpg');
+  background-size: cover;
+  background-position: center;
+  width: 100vh;
+  height: 70vh;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 #pongCanvas {
   width: 70vw;
   height: 35vw;
@@ -902,6 +931,11 @@ cursor: pointer; */
   transition: background-color 0.3s ease;
 }
 
+/* position: fixed;
+  top: 20px;
+  right: 20px;
+
+  border-radius: 50%; */
 .sidebar-btn-profile {
   display: block;
   padding: 10px;
@@ -909,12 +943,19 @@ cursor: pointer; */
   width: 100%;
   border: none;
   border-radius: 5px;
-  background-color: #007bff;
+  background-color: #333;
   color: white;
   font-size: 16px;
   font-weight: bold;
   cursor: pointer;
   transition: background-color 0.3s ease;
+
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 15px;
 }
 
 .sidebar btn:hover {
@@ -986,7 +1027,6 @@ cursor: pointer; */
 
 
 
-
 .shrink {
   margin-left: 250px;
 }
@@ -997,7 +1037,6 @@ cursor: pointer; */
 
 
 /* 
-put slide for image
-put height for all at once with one class
-put button right bottom corrner
+make close button for sidebar
+some stuff is to static like pong eye pic
 */
