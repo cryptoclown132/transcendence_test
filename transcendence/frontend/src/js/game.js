@@ -360,7 +360,6 @@ function handleDOMChangesGame() {
 
   if (startScreenBtn && inviteScreenBtn) {
     startScreenBtn.addEventListener('click', () => {
-      console.log("hello");
       startScreen.classList.add("hidden");
       inviteScreen.classList.add("show");
     })

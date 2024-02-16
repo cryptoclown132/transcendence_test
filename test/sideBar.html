@@ -3,67 +3,102 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
   <title>Profile Page</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div id="profileSite" class="profile-site hidden">
-
-    <div class="profile">
-      <div class="profile-header">
-        <img src="https://www.course-api.com/images/people/person-1.jpeg" alt="Profile Picture" class="profile-picture">
-        <h1 class="profile-name">John Doe</h1>
-        <p class="profile-bio">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-      </div>
-      <div class="profile-details">
-        <h2 class="section-heading">Details</h2>
-        <ul class="details-list">
-          <li><strong>Email:</strong> john@example.com</li>
-          <li><strong>Location:</strong> New York, USA</li>
-          <li><strong>Age:</strong> 30</li>
-        </ul>
-        <div class="status online">
-          <div class="indicator"></div>
-          Online
-        </div>
-      </div>
+  <div class="profile">
+    <div class="profile-header">
+      <button class="round-button">
+        <img src="https://www.course-api.com/images/people/person-1.jpeg" class="profile-picture" alt="">
+      </button>
+    
+      <h1 class="profile-name">John Doe</h1>
+      <select class="form-select" aria-label="Default select example">
+        <option value="1">Online</option>
+        <option value="2">Invisible</option>
+        <option value="3">Do not disturb</option>
+      </select>
     </div>
-  
-    <div class="panel">
-      <h2>Your Stats</h2>
-      <!-- Change "online" class to "offline" for offline status -->
+    
+    <div class="profile-details">
+      <h2 class="section-heading">Details</h2>
       
-      <div class="stats">
-        <div class="stats-item">
-          <span>Rank: #6</span>
-        </div>
-        <div class="stats-item">
-          <span>Total Games Played: 1000</span>
-        </div>
-        <div class="stats-item">
-          <span>Wins: 600</span>
-        </div>
-        <div class="stats-item">
-          <span>Win Rate: 60 %</span>
-        </div>
-        <div class="stats-item">
-          <span>Points scored: 5000</span>
-        </div>
-        <div class="stats-item">
-          <span>Average Points Per Game: 5</span>
-        </div>
-        <button>Global Stats</button>
-      </div>
+      <ul class="details-list">
+        <li><strong>Email:</strong> <input id="email" class="input-field" value="john@example.com" readonly></li>
+        <li><strong>Location:</strong> <input id="location" class="input-field" value="New York, USA" readonly></li>
+        <li><strong>Age:</strong> <input id="age" class="input-field" value="30" readonly></li>
+        <button id="saveButton" class="change-profile-btn" style="display: none;">Save</button>
+      </ul>
+      <button id="editButton" class="change-profile-btn">Edit</button>
     </div>
-  </div>
- 
-  <button id="changeDataBtn">Change Data</button>
 
-  <!-- Add a dropdown for status selection -->
-  <select id="statusDropdown">
-    <option value="online">Online</option>
-    <option value="offline">Offline</option>
-  </select>
+  </div>
+  <div id="user-stats" class="panel glowing-text">
+    <h2>Your Stats</h2>
+    <div class="stats">
+      <div class="stats-item">
+        <span>Rank: #6</span>
+      </div>
+      <div class="stats-item">
+        <span>Total Games Played: 1000</span>
+      </div>
+      <div class="stats-item">
+        <span>Wins: 600</span>
+      </div>
+      <div class="stats-item">
+        <span>Win Rate: 60 %</span>
+      </div>
+      <div class="stats-item">
+        <span>Points scored: 5000</span>
+      </div>
+      <div class="stats-item">
+        <span>Average Points Per Game: 5</span>
+      </div>
+      <button id="stats-button" class="">Global Stats</button>
+  </div>
+
+
+  <table class="leaderboard">
+    <thead>
+        <tr>
+            <th>Rank</th>
+            <th>Name</th>
+            <th>Wins</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>1</td>
+            <td>John Doe</td>
+            <td>1000</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>Jane Smith</td>
+            <td>950</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>Michael Johnson</td>
+            <td>900</td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>Emily Davis</td>
+            <td>850</td>
+        </tr>
+        <tr>
+            <td>5</td>
+            <td>Robert Brown</td>
+            <td>800</td>
+        </tr>
+    </tbody>
+</table>
+      
+  </div>
+
 </body>
 </html>
 
@@ -72,9 +107,162 @@
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #f2f2f2;
+  background-color: #3a3636;
 }
 
+.round-button {
+  border: none;
+  background-color: transparent;
+  padding: 0;
+  /* cursor: pointer; */
+  border-radius: 50%; /* make the button round */
+  /* overflow: hidden; */
+  box-shadow: 0 0 25px rgba(192, 192, 192, 0.8);
+  width: 150px; /* set width */
+  height: 150px;
+}
+
+.profile-picture {
+
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+
+.profile-site {
+  height: 100vh;
+  transition: margin-left 0.8s ease;
+}
+
+.profile {
+  max-width: 600px;
+  margin: 50px auto;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: rgb(41, 118, 41);
+}
+
+.profile-header {
+  text-align: center;
+  padding: 20px;
+}
+
+.profile-picture {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  margin-bottom: 20px;
+}
+
+.profile-name {
+  margin-top: 20px;
+  font-size: 24px;
+  color: #333;
+}
+
+.profile-bio {
+  margin: 10px 0;
+  color: #666;
+}
+
+.profile-details,
+.game-stats {
+  padding: 20px;
+}
+
+.details-list button,
+.form-select {
+  margin-top: 10px; /* Adjust as needed */
+}
+
+.input-field {
+  background-color: transparent;
+  border: transparent;
+  color: rgba(59, 57, 56, 0.9);;
+}
+
+.change-profile-btn {
+  background-color: silver;
+  border: 1px solid silver;
+  color: #333; /* Text color */
+  padding: 5px 10px;
+  border-radius: 20px;
+  box-shadow: 0 0 10px 2px rgba(192, 192, 192, 0.8);
+}
+.change-profile-btn:hover {
+  box-shadow: 0 0 10px 2px rgba(192, 192, 192, 0.8), 0 0 20px 6px rgba(192, 192, 192, 0.6), 0 0 30px 10px rgba(192, 192, 192, 0.4);
+}
+
+.section-heading {
+  margin-top: 0;
+  color: #333;
+}
+
+.details-list,
+.stats-list {
+  list-style: none;
+  padding: 0;
+}
+
+.details-list li,
+.stats-list li {
+  margin-bottom: 10px;
+}
+
+.details-list li strong,
+.stats-list li strong {
+  color: #333;
+  margin-right: 5px;
+}
+
+/* .panel {
+  width: 300px;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  padding: 20px;
+} */
+
+.panel {
+  max-width: 600px;
+  margin: 50px auto;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+  width: 300px;
+  background-color: #0c2326;
+  color: #dadd78; /* Green text color */
+  border: 1px solid #ccc;
+  padding: 20px;
+}
+
+.glowing-text {
+  font-size: 16px;
+  color: #ffffff; /* Initial color of text */
+  text-shadow: 0 0 10px #00ff00, 0 0 15px #00ff00, 0 0 20px #00ff00; 
+}
+
+@keyframes glow {
+  from {
+    text-shadow: 0 0 10px #ffff00, 0 0 20px #ffff00, 0 0 30px #0000ff; /* Start glowing with yellow and blue */
+    /* text-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00, 0 0 30px #00ff00; */
+  }
+  /* to {
+    text-shadow: 0 0 20px #ff0000, 0 0 30px #ff0000, 0 0 40px #ff0000;
+  } */
+}
+
+.stats {
+  margin-top: 20px;
+}
+.stats-item {
+  margin-bottom: 10px;
+}
+.stats-item span {
+  font-weight: bold;
+  margin-right: 5px;
+}
 
 </style>
 
@@ -84,4 +272,7 @@ change data button to change mail, username etc
 select status (dropdown)
 button like structure for stats 
 button to switch to global stats (leaderboard highscore or whatever)
+adjust backgrounds to float more with window like chat background
+
+get rid of of line around the text field
 -->
