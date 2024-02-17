@@ -37,6 +37,7 @@ function handleDOMChangesProfileBtn() {
     });
 
     statsButton.addEventListener('click', function() {
+      console.log("normal stats");
       globalStats.classList.add("hidden");
       userStats.classList.remove("hidden");
     });
