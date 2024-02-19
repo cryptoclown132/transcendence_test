@@ -21,6 +21,26 @@ function handleDOMChangesProfileBtn() {
   const globalStats = document.getElementById("globalStats");
 
 
+ 
+
+  const profileImageInput = document.querySelector('.change-profile-image input[type="file"]');
+  
+  profileImageInput.addEventListener("change", function() {
+    const file = this.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = function(e) {
+        const profilePicture = document.querySelector('.profile-picture');
+        const imageSidebar = document.getElementById("imageSidebar");
+
+        profilePicture.src = e.target.result;
+        imageSidebar.src = e.target.result;
+      };
+    }
+  });
+
+
   // if (!editButton.hasEventListener) {
     editButton.addEventListener('click', function () {
       toggleEdit();
@@ -41,6 +61,13 @@ function handleDOMChangesProfileBtn() {
       globalStats.classList.add("hidden");
       userStats.classList.remove("hidden");
     });
+
+
+
+
+    const sidebar = document.getElementById("sidebar")
+    const sidebarToggle = document.getElementById("sidebar-toggler");
+  
 }
   
 const observerProfile = new MutationObserver(function(mutations) {

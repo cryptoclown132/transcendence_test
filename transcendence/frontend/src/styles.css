@@ -65,6 +65,10 @@ body, html {
   background-color: #3f3939;
 }
 
+
+
+/* home page */
+
 .home {
   /* background-image: url('./ballWithEye.jpg'); */
   background-size: cover; /* Cover the entire background */
@@ -76,26 +80,17 @@ body, html {
   background-color: hsl(135, 59.5%, 29%);
   transition: margin-left 0.8s ease;
 }
-/* position: fixed;
-bottom: 20px;
-right: 20px;
-border-radius: 50%; */
+/* .home {
+  height: 100vh;
+  transition: margin-left 0.8s ease;
+} */
 
 
 .logout-btn {
-  /* position: absolute; */
   position: fixed;
   top: 30px;
   right: 30px;
 }
-
-/* .app {
-  position: static;
-  overflow: hidden;
-  margin: auto;
-  background: url("https://www.androidauthority.com/wp-content/uploads/2023/07/Nothing-Phone-2-wallpaper-previews-5-540w-1200h.jpg.webp") no-repeat center;
-  background-size: cover;
-} */
 
 .centered-image {
   border-radius: 50%;
@@ -103,8 +98,8 @@ border-radius: 50%; */
   background-image: url('./tableTennisLogo.jpg');
   background-size: cover;
   background-position: center;
-  width: 60%;
-  height: 60%;
+  width: 40vw;
+  height: 40vw;
   /* position: absolute; */
   position: fixed;
   top: 48%;
@@ -115,247 +110,14 @@ border-radius: 50%; */
 }
 
 
-#pongCanvas {
-  width: 70vw;
-  height: 35vw;
-  /* display: block; Ensures the canvas is treated as a block element */
-  margin: 0 auto; 
-  /* Centers the canvas horizontally */
-}
+/* chat page */
 
-.game-site {
-  height: 100vh;
-  transition: margin-left 0.8s ease;
-}
-
-.start-screen {
-  position: static;
-  overflow: hidden;
-  margin: auto;
-  background: url("pongComic.jpg") no-repeat center;
-  background-size: cover;
-
-  /* background-image: url('pongComic.jpg');
-  background-size: cover;
-  background-position: center;
-  margin: 0;
-  background-repeat: no-repeat;
-  height: 100%; 
-  height: calc(100% - 50px);  */
-  height: 100%;
-}
-
-.centered-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-}
-
-
-
-.start-screen-btn {
-  padding: 10px 20px;
-  /* background-color: var(--clr-primary-5); */
-  color: #020000;
-  border: none;
-  width: 200px; /* Example width */
-  height: 50px; /* Example height */
-}
-button:hover {
-  transform: scale(1.1); /* Scale the button by 10% when hovered over */
-  color: #020000;
-}
-
-
-.game-invitation {
-  background-image: url('tennisTable.jpg'); /* Replace 'path/to/your/image.jpg' with the path to your image */
-  background-size: cover;
-  background-position: center;
-  height: 100%; 
-  flex: 1;
-  display: none;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  padding: 15px;  
-}
-.game-invitation label,
-.game-invitation input,
-.game-invitation button {
-  margin-bottom: 10px;
-}
-
-.input-user-field {
-  height: 40px;
-  width: 50%; /* Adjust the width as needed */
-  margin: 0 auto;
-}
-
-.enter-name-text {
-  font-size: 40px;
-  /* height:px; */
-  color: rgb(19, 141, 78);
-}
-
-.send-invite-btn {
-  color: rgb(19, 141, 78);
-}
-
-.game-screen {
-  display: none;
-	align-items: center;
-	justify-content: space-between;
-	text-align: center;
-
-  /* height: 100%; */
-}
-
-.playerInfo {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  padding: 15px;
-}
-
-.playerInfo p {
-  margin-top: 20px;
-  color: var(--clr-primary-5);
-}
-
-.circular-image {
-  width: 100px;
-  display: block;
-  height: 100px;
-  object-fit: cover;
-  border-radius: 50%;
-  position: relative;
-
-  box-shadow: 0px 0px 10px hsl(205, 78%, 60%);
-}
-
-.loader {
-  background-image: url('tableTennisLogo.jpg');
-  background-size: cover;
-  background-position: center;
-  height: 100%;
-  /* height: 100vh;  */
-  flex: 1;
-  display: none;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  padding: 15px;  
-}
-
-/* .load-symbol {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  border: 8px solid #f3f3f3;
-  border-top: 8px solid #3498db;
-  border-radius: 50%;
-  width: 100px;
-  height: 100px;
-  animation: spin 2s linear infinite;
-}
-
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-} */
-
-
-.loading-text {
-  font-size: 24px;
+.user-blocked-you-warning {
+  border: 3px solid rgba(255, 56, 56, 0.35);
+  border-radius: 8px;
   font-weight: bold;
-}
-
-.loading-animation::after {
-  content: '';
-  display: inline-block;
-  overflow: hidden;
-  width: 1.2em;
-  white-space: nowrap;
-  animation: dots 1.5s infinite;
-}
-
-@keyframes dots {
-  0%, 20% { content: '.'; }
-  40% { content: '..'; }
-  60% { content: '...'; }
-  80%, 100% { content: ''; }
-}
-
-
-
-
-.show {
-  display: flex;
-}
-
-.hidden {
-  display: none;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- /* html {
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-  }
-
-  body {
-    min-width: 100%;
-    min-height: 100vh;
-    overflow: hidden;
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-  } */
-
-  .user-blocked-you-warning {
-    border: 3px solid rgba(255, 56, 56, 0.35);
-    border-radius: 8px;
-    font-weight: bold;
-    color: #c02c43;
-    background-color: white;
+  color: #c02c43;
+  background-color: white;
 }
 
 #sendMessageButton {
@@ -489,64 +251,7 @@ button:hover {
   display: block;
 }
 
-@media screen and (max-height: 400px) {
-  .format-input-group {
-    display: none;
-  }
-}
 
-/*conditions that happen if max-width is not possible to display anymore*/
-@media screen and (max-width: 200px) {
-  .format-input-group {
-    display: none;
-  }
-}
-@media screen and (max-width: 900px) {
-  #chat-area {
-    display: none;
-  }
-  .heading{
-      border-bottom-left-radius: 10px;
-      border-bottom-right-radius: 10px;
-  }
-  .conversation {
-    width: 100% !important;
-    min-height: 100vh;
-  }
-  .sideBar-time {
-     position: relative;
-     right: -5px;
-     display: none;
-  }
-
-  .format-input-group {
-    position: absolute;
-    width: 100%;
-    bottom: 20px;
-    margin-top: 10px;
-    margin-left: 10px;
-  }
-}
-@media screen and (max-width: 1200px) {
-  .sideBar-time {
-     display: none;
-  }
-  .scroll-messages {
-    height: calc(100vh - 169px);
-    overflow-y: scroll;
-    overflow-x: hidden;
-    scroll-padding-bottom: 100%;
-    left: 12px;
-    position: relative;
-    padding: 10px 50px 10px 25px !important;
-  }
-  .lel {
-    margin-left: 20px;
-  }
-  #sendMessageButton {
-      margin-right: 28px; !important;
-  }
-}
 
 .app {
   position: static;
@@ -759,6 +464,159 @@ button:hover {
 }
 
 
+/* game page */
+
+#pongCanvas {
+  width: 70vw;
+  height: 35vw;
+  /* display: block; Ensures the canvas is treated as a block element */
+  margin: 0 auto; 
+  /* Centers the canvas horizontally */
+}
+
+.game-site {
+  height: 100vh;
+  transition: margin-left 0.8s ease;
+}
+
+.start-screen {
+  position: static;
+  overflow: hidden;
+  margin: auto;
+  background: url("pongComic.jpg") no-repeat center;
+  background-size: cover;
+  height: 100%;
+}
+
+.centered-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+
+
+.start-screen-btn {
+  padding: 10px 20px;
+  /* background-color: var(--clr-primary-5); */
+  color: #020000;
+  border: none;
+  width: 200px; /* Example width */
+  height: 50px; /* Example height */
+}
+button:hover {
+  transform: scale(1.1); /* Scale the button by 10% when hovered over */
+  color: #020000;
+}
+
+
+.game-invitation {
+  background-image: url('tennisTable.jpg'); /* Replace 'path/to/your/image.jpg' with the path to your image */
+  background-size: cover;
+  background-position: center;
+  height: 100%; 
+  flex: 1;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 15px;  
+}
+.game-invitation label,
+.game-invitation input,
+.game-invitation button {
+  margin-bottom: 10px;
+}
+
+.input-user-field {
+  height: 40px;
+  width: 50%; /* Adjust the width as needed */
+  margin: 0 auto;
+}
+
+.enter-name-text {
+  font-size: 40px;
+  /* height:px; */
+  color: rgb(19, 141, 78);
+}
+
+.send-invite-btn {
+  color: rgb(19, 141, 78);
+}
+
+.game-screen {
+  display: none;
+	align-items: center;
+	justify-content: space-between;
+	text-align: center;
+
+  /* height: 100%; */
+}
+
+.playerInfo {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 15px;
+}
+
+.playerInfo p {
+  margin-top: 20px;
+  color: var(--clr-primary-5);
+}
+
+.circular-image {
+  width: 100px;
+  display: block;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 50%;
+  position: relative;
+
+  box-shadow: 0px 0px 10px hsl(205, 78%, 60%);
+}
+
+.loader {
+  background-image: url('tableTennisLogo.jpg');
+  background-size: cover;
+  background-position: center;
+  height: 100%;
+  /* height: 100vh;  */
+  flex: 1;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 15px;  
+}
+
+
+
+
+
+.loading-text {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.loading-animation::after {
+  content: '';
+  display: inline-block;
+  overflow: hidden;
+  width: 1.2em;
+  white-space: nowrap;
+  animation: dots 1.5s infinite;
+}
+
+@keyframes dots {
+  0%, 20% { content: '.'; }
+  40% { content: '..'; }
+  60% { content: '...'; }
+  80%, 100% { content: ''; }
+}
 
 
 
@@ -786,26 +644,63 @@ button:hover {
 
 
 
-/* position: fixed;
-top: 20px;
-right: 20px;
-width: 50px;
-height: 50px;
-border: 1px solid #ccc;
-text-align: center;
-line-height: 50px;
-font-size: 20px;
-cursor: pointer; */
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* sidebar */
 
 .sidebar-toggler {
   position: fixed;
   bottom: 20px;
   right: 20px;
+  background-image: url('./ballWithRacket.jpg');
+  background-size: cover;
+  background-position: center;
   border-radius: 50%;
+  height: 15vw;
+  width: 15vw;
+  max-width: 10rem;
+  max-height: 10rem;
 }
 
-
+/* change either this name or the one from chat */
 .sidebar {
   position: fixed;
   top: 0;
@@ -819,44 +714,6 @@ cursor: pointer; */
 
 .show-sidebar {
   left: 0; /* Slides the sidebar into view */
-}
-
-/* CSS for sidebar */
-/* .sidebar {
-  display: none;
-  width: 250px;
-  background-color: #f4f4f4;
-  padding: 20px;
-  position: fixed;
-  height: 100%;
-  overflow: auto;
-} */
-/* .sidebar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: var(--clr-white);
-  display: grid;
-  grid-template-rows: auto 1fr auto;
-  row-gap: 1rem;
-  box-shadow: var(--clr-red-dark);
-  transition: var(--transition);
-  transform: translate(-100%);
-}
-.show-sidebar {
-  transform: translate(0);
-}
-@media screen and (min-width: 676px) {
-  .sidebar {
-    width: 400px;
-  }
-} */
-
-.home {
-  height: 100vh;
-  transition: margin-left 0.8s ease;
 }
 
 .sidebar-btn-home {
@@ -943,6 +800,37 @@ cursor: pointer; */
   box-shadow: 0 0 10px 2px rgba(192, 192, 192, 0.8), 0 0 20px 6px rgba(192, 192, 192, 0.6), 0 0 30px 10px rgba(192, 192, 192, 0.4);
 }
 
+.sidebar-toggle {
+  position: fixed;
+  top: 2rem;
+  right: 3rem;
+  font-size: 2rem;
+  background: transparent;
+  border-color: transparent;
+  color: var(--clr-primary-5);
+  transition: var(--transition);
+  cursor: pointer;
+  animation: bounce 2s ease-in-out infinite;
+}
+.sidebar-toggle:hover {
+  color: var(--clr-primary-7);
+}
+@keyframes bounce {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.5);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.show-sidebar {
+  display: inline;
+}
+
 
 /* .sidebar btn:hover {
   background-color: #0056b3;
@@ -985,66 +873,56 @@ cursor: pointer; */
   box-shadow: 0 0 10px 2px rgba(0, 128, 0, 0.8), 0 0 20px 6px rgba(0, 128, 0, 0.6), 0 0 30px 10px rgba(0, 128, 0, 0.4);
 }
 
-.sidebar-toggle {
-  position: fixed;
-  top: 2rem;
-  right: 3rem;
-  font-size: 2rem;
-  background: transparent;
-  border-color: transparent;
-  color: var(--clr-primary-5);
-  transition: var(--transition);
-  cursor: pointer;
-  animation: bounce 2s ease-in-out infinite;
-}
-.sidebar-toggle:hover {
-  color: var(--clr-primary-7);
-}
-@keyframes bounce {
-  0% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.5);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
-
-.show-sidebar {
-  display: inline;
-}
 
 
 
 
-/* Profile Stats */
+
+/* Profile Page */
 
 .profile-page {
   /* height: 100%; */
   background-color: #3f3939;
 }
 
+.profile {
+  max-width: 600px;
+  /* max-height: 800px; */
+  margin: 50px auto;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: rgb(41, 118, 41);
+  width: 50vw
+}
 
-.round-button {
-  border: none;
-  background-color: transparent;
-  padding: 0;
-  /* cursor: pointer; */
-  border-radius: 50%; /* make the button round */
-  /* overflow: hidden; */
+.profile-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.change-profile-image {
+  width: 150px; /* Adjust size as needed */
+  height: 150px; /* Adjust size as needed */
+  overflow: hidden;
+  border-radius: 50%;
+  transition: transform 0.3s ease-in-out;
   box-shadow: 0 0 25px rgba(192, 192, 192, 0.8);
-  width: 150px; /* set width */
-  height: 150px;
+}
+
+.change-profile-image:hover {
+  transform: scale(1.2); /* Increase size on hover */
 }
 
 .profile-picture {
-
   width: 100%;
   height: 100%;
+  object-fit: cover;
   border-radius: 50%;
 }
+
+
 
 
 .profile-site {
@@ -1052,13 +930,7 @@ cursor: pointer; */
   transition: margin-left 0.8s ease;
 }
 
-.profile {
-  max-width: 600px;
-  margin: 50px auto;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  background-color: rgb(41, 118, 41);
-}
+
 
 .profile-header {
   text-align: center;
@@ -1141,22 +1013,21 @@ cursor: pointer; */
 } */
 
 .panel {
-  max-width: 600px;
+  max-width: 540px;
   margin: 50px auto;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-
-  width: 300px;
   background-color: #0c2326;
   color: #dadd78; /* Green text color */
   border: 1px solid #ccc;
   padding: 20px;
+  width: 40vw;
 }
 
 .glowing-text {
   font-size: 16px;
   color: #ffffff; /* Initial color of text */
-  text-shadow: 0 0 10px #00ff00, 0 0 15px #00ff00, 0 0 20px #00ff00; 
+  /* text-shadow: 0 0 10px #00ff00, 0 0 15px #00ff00, 0 0 20px #00ff00;  */
 }
 
 @keyframes glow {
@@ -1182,17 +1053,105 @@ cursor: pointer; */
 
 
 
+/* basic stuff */
 
+.show {
+  display: flex;
+}
 
-
+.hidden {
+  display: none;
+}
 
 .shrink {
   margin-left: 250px;
 }
 
 
+/* media queries */
 
+@media screen and (max-height: 400px) {
+  .format-input-group {
+    display: none;
+  }
+}
+
+/*conditions that happen if max-width is not possible to display anymore*/
+@media screen and (max-width: 200px) {
+  .format-input-group {
+    display: none;
+  }
+}
+@media screen and (max-width: 900px) {
+  #chat-area {
+    display: none;
+  }
+  .heading{
+      border-bottom-left-radius: 10px;
+      border-bottom-right-radius: 10px;
+  }
+  .conversation {
+    width: 100% !important;
+    min-height: 100vh;
+  }
+  .sideBar-time {
+     position: relative;
+     right: -5px;
+     display: none;
+  }
+
+  .format-input-group {
+    position: absolute;
+    width: 100%;
+    bottom: 20px;
+    margin-top: 10px;
+    margin-left: 10px;
+  }
+}
+@media screen and (max-width: 1200px) {
+  .sideBar-time {
+     display: none;
+  }
+  .scroll-messages {
+    height: calc(100vh - 169px);
+    overflow-y: scroll;
+    overflow-x: hidden;
+    scroll-padding-bottom: 100%;
+    left: 12px;
+    position: relative;
+    padding: 10px 50px 10px 25px !important;
+  }
+  .lel {
+    margin-left: 20px;
+  }
+  #sendMessageButton {
+      margin-right: 28px; !important;
+  }
+}
+
+
+
+
+
+
+/* 320px — 480px: Mobile devices
+481px — 768px: iPads, Tablets
+769px — 1024px: Small screens, laptops
+1025px — 1200px: Desktops, large screens
+1201px and more —  Extra large screens, TV */
+
+
+
+/* For mobile devices */
+@media (min-width: 320px) and (max-width: 480px) {
+
+}
+
+/* For iPads and tablets */
 @media (min-width: 481px) and (max-width: 768px) {
+  /* home page */
+  
+  
   .centered-container {
     height: 100vh;
   }
@@ -1202,12 +1161,13 @@ cursor: pointer; */
   .loader {
     height: 80vh; 
   }
-  .home {
+  /* .home {
     height: 80vh;
-  }
+  } */
 }
 
-@media (min-width: 769px) {
+/* For small screens and laptops */
+@media (min-width: 769px) and (max-width: 1024px) {
   .centered-container {
     height: 80vh;
   }
@@ -1217,8 +1177,17 @@ cursor: pointer; */
   .loader {
     height: 100vh;
   }
-  .home {
+  /* .home {
     height: 100vh;
-  }
+  } */
 }
 
+/* For desktops and large screens */
+@media (min-width: 1025px) and (max-width: 1200px) {
+ 
+}
+
+/* For extra large screens and TVs */
+@media (min-width: 1201px) {
+  
+}
