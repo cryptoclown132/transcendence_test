@@ -36,51 +36,79 @@ function addEventListenersIsAuth() {
   }
   loadContentProfile('html/profile.html', 'profileSite');
 
-  document.getElementById('homeButton').addEventListener('click', function () {
-    showSiteHideOthers('homeSite')
-  })
+  // document.getElementById('homeButton').addEventListener('click', function () {
+  //   showSiteHideOthers('homeSite')
+  // })
 
-  document.getElementById('showChatButton').addEventListener('click', async function () {
-    await sendDataToBackend('get_current_users_chats')
-    await sendDataToBackend('get_blocked_by_user')
-    await sendDataToBackend('get_blocked_user') // NEW since 02.02
-    showSiteHideOthers('chat')
-  })
+  // document.getElementById('showChatButton').addEventListener('click', async function () {
+  //   await sendDataToBackend('get_current_users_chats')
+  //   await sendDataToBackend('get_blocked_by_user')
+  //   await sendDataToBackend('get_blocked_user') // NEW since 02.02
+  //   showSiteHideOthers('chat')
+  // })
 
-  document.getElementById('gameButton').addEventListener('click', async function () {
-    
-    showSiteHideOthers('gameSite')
-  })
 
-  document.getElementById('nothingButton').addEventListener('click', async function () {
-    showSiteHideOthers('nothingSite')
-  })
+  // document.addEventListener('DOMContentLoaded', function() {
+  //   document.addEventListener('click', async function(event) {   
+  //     if (event.target.id === 'homeButton')
+  //       showSiteHideOthers('homeSite');
+  //     if (event.target.id === 'gameButton')
+  //       showSiteHideOthers('gameSite');
+  //     if (event.target.id === 'nothingButton')
+  //       showSiteHideOthers('nothingSite');
+  //     if (event.target.id === 'profileButton')
+  //       showSiteHideOthers('profileSite');
+  //     if (event.target.id === 'showChatButton') {
+  //       await sendDataToBackend('get_current_users_chats');
+  //       await sendDataToBackend('get_blocked_by_user');
+  //       await sendDataToBackend('get_blocked_user'); // NEW since 02.02
+  //       showSiteHideOthers('chat');
+  //     } 
+  //   });
+  // });
+
+
+  document.addEventListener('click', async function(event) {   
+    if (event.target.id === 'homeButton')
+      showSiteHideOthers('homeSite');
+    if (event.target.id === 'gameButton')
+      showSiteHideOthers('gameSite');
+    if (event.target.id === 'nothingButton')
+      showSiteHideOthers('nothingSite');
+    if (event.target.id === 'profileButton')
+      showSiteHideOthers('profileSite')
+    if (event.target.id === 'showChatButton') {
+      await sendDataToBackend('get_current_users_chats')
+      await sendDataToBackend('get_blocked_by_user')
+      await sendDataToBackend('get_blocked_user') // NEW since 02.02
+      showSiteHideOthers('chat')
+    }
+  });
+
+// document.addEventListener('click', function(event) {
+//   if (event.target.id === 'profileButton')
+//     showSiteHideOthers('profileSite')
+// });
+
+  // document.getElementById('gameButton').addEventListener('click', async function () {
+  //   showSiteHideOthers('gameSite')
+  // })
+
+  // document.getElementById('nothingButton').addEventListener('click', async function () {
+  //   showSiteHideOthers('nothingSite')
+  // })
 
   document.getElementById('profileButton').addEventListener('click', function () {
-    showSiteHideOthers('profileSite')
-  //   const userModal = new bootstrap.Modal(document.getElementById('userProfileModal2'));
-  //   const label = document.getElementById('userModalLabel2');
-  //   label.innerHTML = `<h5>${websocket_obj.username}</h5>`;
-  //   const modalBody = document.getElementById('userProfileModalBody2');
-  //   modalBody.innerHTML = `
-  //     <div id="previewContainer">
-  //       <img id="previewImage" alt="Profile Preview">
-  //       <div id="onHoverText">CHANGE PROFILEPICTURE</div>
-  //     </div>
-  //     <form id="profileForm">
-  //       <span id="selectedFileName"></span>
-  //       <input type="file" id="profilePictureInput" accept="image/*" style="display: none;" onchange="submitForm()">
-  //     </form>
-  //     <p>Name: ${websocket_obj.username}</p><p>ID: ${websocket_obj.user_id}</p>`
-  //   document.getElementById('previewImage').src = websocket_obj.avatar;
-  //   const previewContainer = document.getElementById('previewContainer');
-  //   previewContainer.style.display = 'block';
-  //   previewContainer.addEventListener('click', function () {
-  //     document.getElementById('profilePictureInput').click();
-  //   });
-  //   userModal.show();
-  })
+    showSiteHideOthers('profileSite')})
 }
+
+
+
+let state = { 
+  bodyText: "<div id=userIsNotAuth></div>",
+  currPage : "home",
+//   idxState : 0
+};
 
 function showSiteHideOthers(site_to_show) {
   console.log(site_to_show);
@@ -90,6 +118,30 @@ function showSiteHideOthers(site_to_show) {
     if (site === site_to_show) showDiv(site)
     else hideDiv(site)
   });
+
+  const sidebar = document.getElementById("sidebar")
+  const sidebarToggle = document.getElementById("sidebar-toggler");
+
+  const homeSite = document.getElementById("homeSite");
+  const homeImage = document.getElementById("centered-image");
+
+  const chat = document.getElementById("chat");
+  const gameSite = document.getElementById("gameSite");
+  const profileSite = document.getElementById("profileSite");
+
+
+  homeSite.classList.remove("shrink");
+  homeImage.classList.remove("shrink");
+  chat.classList.remove("shrink");
+  gameSite.classList.remove("shrink");
+  profileSite.classList.remove("shrink");
+
+  sidebar.classList.remove("show-sidebar");
+
+
+  state.currPage = site_to_show;
+  state.bodyText = document.body.innerHTML;
+  handleButtonClick("");
 }
 
 function submitForm() {
@@ -151,16 +203,38 @@ function hideDiv(element_id) {
 
 function showDiv(element_id) {
   console.log(element_id);
-  document.getElementById(element_id).classList.remove('hidden')
+  document.getElementById(element_id).classList.remove('hidden');
+}
+
+function render() {
+	document.body.innerHTML = state.bodyText;
 }
 
 
+// (function initialize() {
+//   window.history.replaceState(state, null, "");
+//   render(state);
+// })();
+
+function handleButtonClick(url) {
+	window.history.pushState(state, null, url);
+	// render(state);
+}
 
 
+// Tell your browser to give you old state and re-render on back
+window.onpopstate = function (event) {
+	if (event.state)
+		state = event.state;
+	let stateJson = JSON.stringify(event.state);
 
+	
+  render(state);
+  // attachEventListeners();
+};
 
-
-
+//render without sidebar or close the sidebar
+//logout button is not working while navigating
 
 
 
@@ -171,6 +245,12 @@ function handleDOMChanges() {
   const homeSite = document.getElementById("homeSite");
   const homeImage = document.getElementById("centered-image");
 
+  const chat = document.getElementById("chat");
+  const gameSite = document.getElementById("gameSite");
+  const profileSite = document.getElementById("profileSite");
+
+
+  //shrink doesnt works as expected
   if (!sidebarToggle.hasEventListener) {
     sidebarToggle.addEventListener('click', function () {
       sidebar.classList.toggle("show-sidebar");
@@ -178,10 +258,16 @@ function handleDOMChanges() {
       if (sidebar.classList.contains("show-sidebar")){
         homeSite.classList.add("shrink");
         homeImage.classList.add("shrink");
+        chat.classList.add("shrink");
+        gameSite.classList.add("shrink");
+        profileSite.classList.add("shrink");
       }
       else {
         homeSite.classList.remove("shrink");
         homeImage.classList.remove("shrink");
+        chat.classList.remove("shrink");
+        gameSite.classList.remove("shrink");
+        profileSite.classList.remove("shrink");
       }
     });
     sidebarToggle.hasEventListener = true; 

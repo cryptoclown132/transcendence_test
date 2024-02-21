@@ -1,15 +1,15 @@
 function handleDOMChangesProfile() {
-    const sidebar = document.getElementById("sidebar")
-    const sidebarToggle = document.getElementById("sidebar-toggler");
-    const profileSite = document.getElementById("profileSite");
+    // const sidebar = document.getElementById("sidebar")
+    // const sidebarToggle = document.getElementById("sidebar-toggler");
+    // const profileSite = document.getElementById("profileSite");
 
-    sidebarToggle.addEventListener('click', function () {
-        console.log("profile shrinkin");
-      if (sidebar.classList.contains("show-sidebar")) 
-        profileSite.classList.add("shrink");
-      else
-        profileSite.classList.remove("shrink");
-    });
+    // sidebarToggle.addEventListener('click', function () {
+    //     console.log("profile shrinkin");
+    //   if (sidebar.classList.contains("show-sidebar")) 
+    //     profileSite.classList.add("shrink");
+    //   else
+    //     profileSite.classList.remove("shrink");
+    // });
 }
 
 function handleDOMChangesProfileBtn() {

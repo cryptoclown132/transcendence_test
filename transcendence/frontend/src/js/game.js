@@ -346,17 +346,17 @@ function handleDOMChangesGame() {
   const gameScreen = document.getElementById("game-screen");
   const loadingScreen = document.getElementById("loader");
 
-  const sidebar = document.getElementById("sidebar")
-  const sidebarToggle = document.getElementById("sidebar-toggler");
+  // const sidebar = document.getElementById("sidebar")
+  // const sidebarToggle = document.getElementById("sidebar-toggler");
 
-  const gameSite = document.getElementById("gameSite");
+  // const gameSite = document.getElementById("gameSite");
 
-  sidebarToggle.addEventListener('click', function () {
-    if (sidebar.classList.contains("show-sidebar")) 
-      gameSite.classList.add("shrink");
-    else
-      gameSite.classList.remove("shrink");
-  });
+  // sidebarToggle.addEventListener('click', function () {
+  //   if (sidebar.classList.contains("show-sidebar")) 
+  //     gameSite.classList.add("shrink");
+  //   else
+  //     gameSite.classList.remove("shrink");
+  // });
 
   if (startScreenBtn && inviteScreenBtn) {
     startScreenBtn.addEventListener('click', () => {

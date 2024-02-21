@@ -510,18 +510,18 @@ function parseTimeString(timeString) {
 function handleDOMChangesChat() {
   
 
-  const sidebar = document.getElementById("sidebar")
-  const sidebarToggle = document.getElementById("sidebar-toggler");
+  // const sidebar = document.getElementById("sidebar")
+  // const sidebarToggle = document.getElementById("sidebar-toggler");
 
-  const chat = document.getElementById("chat");
+  // const chat = document.getElementById("chat");
 
 
-  sidebarToggle.addEventListener('click', function () {
-    if (sidebar.classList.contains("show-sidebar")) 
-      chat.classList.add("shrink");
-    else
-      chat.classList.remove("shrink");
-  });
+  // sidebarToggle.addEventListener('click', function () {
+  //   if (sidebar.classList.contains("show-sidebar")) 
+  //     chat.classList.add("shrink");
+  //   else
+  //     chat.classList.remove("shrink");
+  // });
 
  
 }
