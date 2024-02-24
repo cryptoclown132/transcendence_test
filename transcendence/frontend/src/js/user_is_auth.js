@@ -30,11 +30,23 @@ function addEventListenersIsAuth() {
         .then(response => response.text())
         .then(html => {
           document.getElementById(targetId).innerHTML = html;
-          chatDom();
+          // chatDom();
         })
         .catch(error => console.error('Error loading content:', error));
   }
   loadContentProfile('html/profile.html', 'profileSite');
+
+
+  function loadStats(file, targetId) {
+    fetch(file)
+        .then(response => response.text())
+        .then(html => {
+          document.getElementById(targetId).innerHTML = html;
+          // chatDom();
+        })
+        .catch(error => console.error('Error loading content:', error));
+  }
+  loadStats('html/stats.html', 'statsSite');
 
   // document.getElementById('homeButton').addEventListener('click', function () {
   //   showSiteHideOthers('homeSite')
@@ -48,24 +60,7 @@ function addEventListenersIsAuth() {
   // })
 
 
-  // document.addEventListener('DOMContentLoaded', function() {
-  //   document.addEventListener('click', async function(event) {   
-  //     if (event.target.id === 'homeButton')
-  //       showSiteHideOthers('homeSite');
-  //     if (event.target.id === 'gameButton')
-  //       showSiteHideOthers('gameSite');
-  //     if (event.target.id === 'nothingButton')
-  //       showSiteHideOthers('nothingSite');
-  //     if (event.target.id === 'profileButton')
-  //       showSiteHideOthers('profileSite');
-  //     if (event.target.id === 'showChatButton') {
-  //       await sendDataToBackend('get_current_users_chats');
-  //       await sendDataToBackend('get_blocked_by_user');
-  //       await sendDataToBackend('get_blocked_user'); // NEW since 02.02
-  //       showSiteHideOthers('chat');
-  //     } 
-  //   });
-  // });
+
 
 
   document.addEventListener('click', async function(event) {   
@@ -73,8 +68,8 @@ function addEventListenersIsAuth() {
       showSiteHideOthers('homeSite');
     if (event.target.id === 'gameButton')
       showSiteHideOthers('gameSite');
-    if (event.target.id === 'nothingButton')
-      showSiteHideOthers('nothingSite');
+    if (event.target.id === 'statsButton')
+      showSiteHideOthers('statsSite');
     if (event.target.id === 'profileButton')
       showSiteHideOthers('profileSite')
     if (event.target.id === 'showChatButton') {
@@ -83,6 +78,37 @@ function addEventListenersIsAuth() {
       await sendDataToBackend('get_blocked_user') // NEW since 02.02
       showSiteHideOthers('chat')
     }
+
+    const sidebar = document.getElementById("sidebar")
+    if (event.target.id === "sidebar-toggler") {
+
+      sidebar.classList.add("show-sidebar");
+      addShrinkForSites();
+      rmSidebarToggle();
+    }
+    if (event.target.id === "close-sidebar-btn") {
+      console.log("closed toggled ");
+      sidebar.classList.remove("show-sidebar");
+      rmShrinkForSites();
+      addSidebarToggle();
+    }
+
+  //   const sidebarToggle = document.getElementById("sidebar-toggler");
+  // const closeSidebarBtn = document.getElementById("close-sidebar-btn");
+
+  // sidebarToggle.addEventListener('click', function () {
+    
+  // });
+  // closeSidebarBtn.addEventListener('click', function () {
+   
+  // });
+
+    if (event.target.id === 'logoutButton') {
+      await logoutUser()
+
+    }
+    // document.getElementById('logoutButton').addEventListener('click', async function () {
+    // })
   });
 
 // document.addEventListener('click', function(event) {
@@ -113,36 +139,24 @@ let state = {
 function showSiteHideOthers(site_to_show) {
   console.log(site_to_show);
 
-  const sites = ['gameSite', 'nothingSite', 'homeSite', 'chat', 'profileSite'];
+  const sites = ['gameSite', 'statsSite', 'homeSite', 'chat', 'profileSite'];
   sites.forEach(site => {
     if (site === site_to_show) showDiv(site)
     else hideDiv(site)
   });
 
-  const sidebar = document.getElementById("sidebar")
-  const sidebarToggle = document.getElementById("sidebar-toggler");
-
-  const homeSite = document.getElementById("homeSite");
-  const homeImage = document.getElementById("centered-image");
-
-  const chat = document.getElementById("chat");
-  const gameSite = document.getElementById("gameSite");
-  const profileSite = document.getElementById("profileSite");
-
-
-  homeSite.classList.remove("shrink");
-  homeImage.classList.remove("shrink");
-  chat.classList.remove("shrink");
-  gameSite.classList.remove("shrink");
-  profileSite.classList.remove("shrink");
-
-  sidebar.classList.remove("show-sidebar");
-
+  rmSidebar();
+  rmShrinkForSites();
+  addSidebarToggle();
 
   state.currPage = site_to_show;
   state.bodyText = document.body.innerHTML;
   handleButtonClick("");
 }
+
+
+
+
 
 function submitForm() {
   const img = document.getElementById('profilePictureInput')
@@ -236,42 +250,71 @@ window.onpopstate = function (event) {
 //render without sidebar or close the sidebar
 //logout button is not working while navigating
 
-
-
-function handleDOMChanges() {
+function rmSidebar() {
   const sidebar = document.getElementById("sidebar")
-  const sidebarToggle = document.getElementById("sidebar-toggler");
 
+  sidebar.classList.remove("show-sidebar");
+}
+
+function rmShrinkForSites() {
   const homeSite = document.getElementById("homeSite");
   const homeImage = document.getElementById("centered-image");
-
   const chat = document.getElementById("chat");
   const gameSite = document.getElementById("gameSite");
   const profileSite = document.getElementById("profileSite");
+ 
+  
+  homeSite.classList.remove("shrink");
+  homeImage.classList.remove("shrink");
+  chat.classList.remove("shrink");
+  gameSite.classList.remove("shrink");
+  profileSite.classList.remove("shrink");
+}
 
+function rmSidebarToggle() {
+  const sidebarToggle = document.getElementById("sidebar-toggler");
 
-  //shrink doesnt works as expected
-  if (!sidebarToggle.hasEventListener) {
-    sidebarToggle.addEventListener('click', function () {
-      sidebar.classList.toggle("show-sidebar");
-      
-      if (sidebar.classList.contains("show-sidebar")){
-        homeSite.classList.add("shrink");
-        homeImage.classList.add("shrink");
-        chat.classList.add("shrink");
-        gameSite.classList.add("shrink");
-        profileSite.classList.add("shrink");
-      }
-      else {
-        homeSite.classList.remove("shrink");
-        homeImage.classList.remove("shrink");
-        chat.classList.remove("shrink");
-        gameSite.classList.remove("shrink");
-        profileSite.classList.remove("shrink");
-      }
-    });
-    sidebarToggle.hasEventListener = true; 
-  }
+  sidebarToggle.classList.add("hidden");
+}
+
+function addShrinkForSites() {
+  const homeSite = document.getElementById("homeSite");
+  const homeImage = document.getElementById("centered-image");
+  const chat = document.getElementById("chat");
+  const gameSite = document.getElementById("gameSite");
+  const profileSite = document.getElementById("profileSite");
+  
+  homeSite.classList.add("shrink");
+  homeImage.classList.add("shrink");
+  chat.classList.add("shrink");
+  gameSite.classList.add("shrink");
+  profileSite.classList.add("shrink");
+}
+
+function addSidebarToggle() {
+  const sidebarToggle = document.getElementById("sidebar-toggler");
+
+  setTimeout(function() {
+    sidebarToggle.classList.remove("hidden");
+  }, 600);
+}
+
+function handleDOMChanges() {
+  // const sidebar = document.getElementById("sidebar")
+  // const sidebarToggle = document.getElementById("sidebar-toggler");
+  // const closeSidebarBtn = document.getElementById("close-sidebar-btn");
+
+  // sidebarToggle.addEventListener('click', function () {
+  //   sidebar.classList.add("show-sidebar");
+  //   addShrinkForSites();
+  //   rmSidebarToggle();
+  // });
+  // closeSidebarBtn.addEventListener('click', function () {
+  //   sidebar.classList.remove("show-sidebar");
+  //   rmShrinkForSites();
+  //   addSidebarToggle();
+  // });
+  
 }
 
 

@@ -92,8 +92,8 @@ function addEventListenersNotAuth() {
     document.getElementById('registerPassword').value  = null;
     document.getElementById("registerUsername").style.border = "";
     document.getElementById("registerPassword").style.border = "";
-    const info_register = document.getElementById('info_register')
-    info_register.style.display = 'none';
+    // const info_register = document.getElementById('info_register')
+    // info_register.style.display = 'none';
   });
 
   // BUTTON TO CHANGE TO REGISTER PAGE
@@ -104,7 +104,7 @@ function addEventListenersNotAuth() {
     document.getElementById('loginPassword').value  = null;
     document.getElementById("loginUsername").style.border = "";
     document.getElementById("loginPassword").style.border = "";
-    const info_login = document.getElementById('info_login')
-    info_login.style.display = 'none';
+    // const info_login = document.getElementById('info_login')
+    // info_login.style.display = 'none';
   });
 }

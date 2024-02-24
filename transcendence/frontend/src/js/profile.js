@@ -16,7 +16,7 @@ function handleDOMChangesProfileBtn() {
   const editButton = document.getElementById("editButton");
   const saveButton = document.getElementById("saveButton");
   const globalStatsButton = document.getElementById("globalStatsButton");
-  const statsButton = document.getElementById("statsButton");
+  const statsButton = document.getElementById("yourStatsButton");
   const userStats = document.getElementById("userStats");
   const globalStats = document.getElementById("globalStats");
 

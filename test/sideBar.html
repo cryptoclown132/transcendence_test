@@ -8,359 +8,66 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="profile-page">
-    <div class="profile">
-      <div class="profile-header">
-        <label id="changeProfileImage" class="change-profile-image">
-          <input type="file" style="display: none;" accept="image/*">
-          <img src="https://www.course-api.com/images/people/person-1.jpeg" class="profile-picture" alt="Profile Picture">
-        </label>
-      
-        <h1 class="profile-name">John Doe</h1>
-        <select class="form-select" aria-label="Default select example">
-          <option value="1">Online</option>
-          <option value="2">Invisible</option>
-          <option value="3">Do not disturb</option>
-        </select>
-      </div>
-      
-      <div class="profile-details">
-        <h2 class="section-heading">Details</h2>
-        
-        <ul class="details-list">
-          <li><strong>Email:</strong> <input id="email" class="input-field" value="john@example.com" readonly></li>
-          <li><strong>Location:</strong> <input id="location" class="input-field" value="New York, USA" readonly></li>
-          <li><strong>Age:</strong> <input id="age" class="input-field" value="30" readonly></li>
-          <button id="saveButton" class="change-profile-btn" style="display: none;">Save</button>
-        </ul>
-        <button id="editButton" class="change-profile-btn">Edit</button>
-      </div>
-  </div>
-    
-  <div id="userStats" class="panel glowing-text">
-    <h2>Your Stats</h2>
-    <div class="stats">
-      <div class="stats-item">
-        <span>Rank: #6</span>
-      </div>
-      <div class="stats-item">
-        <span>Total Games Played: 1000</span>
-      </div>
-      <div class="stats-item">
-        <span>Wins: 600</span>
-      </div>
-      <div class="stats-item">
-        <span>Win Rate: 60 %</span>
-      </div>
-      <div class="stats-item">
-        <span>Points scored: 5000</span>
-      </div>
-      <div class="stats-item">
-        <span>Average Points Per Game: 5</span>
-      </div>
-      <!-- stats-btn -->
-      <button id="globalStatsButton" class="">Global Stats</button>
-    </div>
-  </div>
-    
-    
-    <div id="globalStats" class="panel glowing-text hidden">
-      <table class="leaderboard">
-        <thead>
-            <tr>
-                <th>Rank</th>
-                <th>Name</th>
-                <th>Wins</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>1</td>
-                <td>John Doe</td>
-                <td>1000</td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>Jane Smith</td>
-                <td>950</td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td>Michael Johnson</td>
-                <td>900</td>
-            </tr>
-            <tr>
-                <td>4</td>
-                <td>Emily Davis</td>
-                <td>850</td>
-            </tr>
-            <tr>
-                <td>5</td>
-                <td>Robert Brown</td>
-                <td>800</td>
-            </tr>
-          </tbody>
-        </table>
-        <button id="statsButton" class="">Your Stats</button>
-    </div>
-    </div>
+  <div id="wrapper">
+    <div class="overlay"></div>
+     
+         <!-- Sidebar -->
+     <nav class="navbar navbar-inverse fixed-top" id="sidebar-wrapper" role="navigation">
+      <ul class="nav sidebar-nav">
+        <div class="sidebar-header">
+        <div class="sidebar-brand">
+          <a href="#">Brand</a></div></div>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#events">Events</a></li>
+        <li><a href="#team">Team</a></li>
+        <li class="dropdown">
+        <a href="#works" class="dropdown-toggle"  data-toggle="dropdown">Works <span class="caret"></span></a>
+      <ul class="dropdown-menu animated fadeInLeft" role="menu">
+       <div class="dropdown-header">Dropdown heading</div>
+       <li><a href="#pictures">Pictures</a></li>
+       <li><a href="#videos">Videeos</a></li>
+       <li><a href="#books">Books</a></li>
+       <li><a href="#art">Art</a></li>
+       <li><a href="#awards">Awards</a></li>
+       </ul>
+       </li>
+       <li><a href="#services">Services</a></li>
+       <li><a href="#contact">Contact</a></li>
+       <li><a href="#followme">Follow me</a></li>
+       </ul>
+   </nav>
+         <!-- /#sidebar-wrapper -->
+ 
+         <!-- Page Content -->
+         <div id="page-content-wrapper">
+             <button type="button" class="hamburger animated fadeInLeft is-closed" data-toggle="offcanvas">
+                 <span class="hamb-top"></span>
+           <span class="hamb-middle"></span>
+         <span class="hamb-bottom"></span>
+             </button>
+             <div class="container">
+                 <div class="row">
+                     <div class="col-lg-8 col-lg-offset-2">
+                         <h1>Fancy Toggle Sidebar Navigation</h1>
+                         <p>Bacon ipsum dolor sit amet tri-tip shoulder tenderloin shankle. Bresaola tail pancetta ball tip doner meatloaf corned beef. Kevin pastrami tri-tip prosciutto ham hock pork belly bacon pork loin salami pork chop shank corned beef tenderloin meatball cow. Pork bresaola meatloaf tongue, landjaeger tail andouille strip steak tenderloin sausage chicken tri-tip. Pastrami tri-tip kielbasa sausage porchetta pig sirloin boudin rump meatball andouille chuck tenderloin biltong shank </p>
+                         <p>Pig meatloaf bresaola, spare ribs venison short loin rump pork loin drumstick jowl meatball brisket. Landjaeger chicken fatback pork loin doner sirloin cow short ribs hamburger shoulder salami pastrami. Pork swine beef ribs t-bone flank filet mignon, ground round tongue. Tri-tip cow turducken shank beef shoulder bresaola tongue flank leberkas ball tip.</p>
+                         <p>Filet mignon brisket pancetta fatback short ribs short loin prosciutto jowl turducken biltong kevin pork chop pork beef ribs bresaola. Tongue beef ribs pastrami boudin. Chicken bresaola kielbasa strip steak biltong. Corned beef pork loin cow pig short ribs boudin bacon pork belly chicken andouille. Filet mignon flank turkey tongue. Turkey ball tip kielbasa pastrami flank tri-tip t-bone kevin landjaeger capicola tail fatback pork loin beef jerky.</p>
+                         <p>Chicken ham hock shankle, strip steak ground round meatball pork belly jowl pancetta sausage spare ribs. Pork loin cow salami pork belly. Tri-tip pork loin sausage jerky prosciutto t-bone bresaola frankfurter sirloin pork chop ribeye corned beef chuck. Short loin hamburger tenderloin, landjaeger venison porchetta strip steak turducken pancetta beef cow leberkas sausage beef ribs. Shoulder ham jerky kielbasa. Pig doner short loin pork chop. Short ribs frankfurter rump meatloaf.</p>
+                         <p>Filet mignon biltong chuck pork belly, corned beef ground round ribeye short loin rump swine. Hamburger drumstick turkey, shank rump biltong pork loin jowl sausage chicken. Rump pork belly fatback ball tip swine doner pig. Salami jerky cow, boudin pork chop sausage tongue andouille turkey.</p>                         
+                     </div>
+                 </div>
+             </div>
+         </div>
+         <!-- /#page-content-wrapper -->
+ 
+     </div>
+     <!-- /#wrapper -->
 
+     <script defer src="app.js"></script>
 </body>
 </html>
 
-<style>
-
-:root {
-  /* dark shades of primary color*/
-  --clr-primary-1: hsl(205, 86%, 17%);
-  --clr-primary-2: hsl(205, 77%, 27%);
-  --clr-primary-3: hsl(205, 72%, 37%);
-  --clr-primary-4: hsl(205, 63%, 48%);
-  /* primary/main color */
-  --clr-primary-5: hsl(205, 78%, 60%);
-  /* lighter shades of primary color */
-  --clr-primary-6: hsl(205, 89%, 70%);
-  --clr-primary-7: hsl(205, 90%, 76%);
-  --clr-primary-8: hsl(205, 86%, 81%);
-  --clr-primary-9: hsl(205, 90%, 88%);
-  --clr-primary-10: hsl(205, 100%, 96%);
-  /* darkest grey - used for headings */
-  --clr-grey-1: hsl(209, 61%, 16%);
-  --clr-grey-2: hsl(211, 39%, 23%);
-  --clr-grey-3: hsl(209, 34%, 30%);
-  --clr-grey-4: hsl(209, 28%, 39%);
-  /* grey used for paragraphs */
-  --clr-grey-5: hsl(210, 22%, 49%);
-  --clr-grey-6: hsl(209, 23%, 60%);
-  --clr-grey-7: hsl(211, 27%, 70%);
-  --clr-grey-8: hsl(210, 31%, 80%);
-  --clr-grey-9: hsl(212, 33%, 89%);
-  --clr-grey-10: hsl(210, 36%, 96%);
-  --clr-white: #fff;
-  --clr-red-dark: hsl(360, 67%, 44%);
-  --clr-red-light: hsl(360, 71%, 66%);
-  --clr-green-dark: hsl(125, 67%, 44%);
-  --clr-green-light: hsl(125, 71%, 66%);
-  --clr-black: #222;
-  --ff-primary: "Roboto", sans-serif;
-  --ff-secondary: "Open Sans", sans-serif;
-  --transition: all 0.3s linear;
-  --spacing: 0.1rem;
-  --radius: 0.25rem;
-  --light-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-  --dark-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-  --max-width: 1170px;
-  --fixed-width: 620px;
-}
-
-/* .color1 {color: #132400;}
-.color2 {color: #005925;}
-.color3 {color: #ff4f58;}
-.color4 {color: #ffbb64;}
-.color5 {color: #ffffab;} */
-
-.color1 {color: #131615;}
-.color2 {color: #124457;}
-.color3 {color: #ef7267;}
-.color4 {color: #ecc85d;}
-.color5 {color: #f8efb5;}
-
-body, html {
-  /* margin: 0;
-  padding: 0;
-  height: 100%;
-  overflow: hidden; */
-  height: 100%;
-  margin: 0;
-  overflow: hidden;
-  background-color: #131615;
-}
-
-
-
-
-.profile-page {
-  /* height: 100%; */
-  background-color: #131615;
-}
-
-.profile {
-  max-width: 600px;
-  /* max-height: 800px; */
-  margin: 50px auto;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  background-color: #f8efb5;
-  width: 50vw
-}
-
-.profile-header {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-}
-
-.change-profile-image {
-  width: 150px; /* Adjust size as needed */
-  height: 150px; /* Adjust size as needed */
-  overflow: hidden;
-  border-radius: 50%;
-  transition: transform 0.3s ease-in-out;
-  box-shadow: 0 0 25px rgba(192, 192, 192, 0.8);
-}
-
-.change-profile-image:hover {
-  transform: scale(1.2); /* Increase size on hover */
-}
-
-.profile-picture {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 50%;
-}
-
-
-
-
-.profile-site {
-  height: 100vh;
-  transition: margin-left 0.8s ease;
-}
-
-
-
-.profile-header {
-  text-align: center;
-  padding: 20px;
-}
-
-.profile-picture {
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
-  margin-bottom: 20px;
-}
-
-.profile-name {
-  margin-top: 20px;
-  font-size: 24px;
-  color: #333;
-}
-
-.profile-bio {
-  margin: 10px 0;
-  color: #666;
-}
-
-.profile-details,
-.game-stats {
-  padding: 20px;
-
-  color: #ffffab;
-}
-
-.details-list button,
-.form-select {
-  margin-top: 10px; /* Adjust as needed */
-}
-
-.input-field {
-  background-color: transparent;
-  border: transparent;
-  color: rgba(59, 57, 56, 0.9);;
-}
-
-.change-profile-btn {
-  /* background-color: #ef7267; */
-  /* border: 1px solid silver; */
-  color: #333; /* Text color */
-  padding: 5px 10px;
-  border-radius: 20px;
-  box-shadow: 0 0 10px 2px rgba(192, 192, 192, 0.8);
-}
-.change-profile-btn:hover {
-  box-shadow: 0 0 10px 2px rgba(192, 192, 192, 0.8), 0 0 20px 6px rgba(192, 192, 192, 0.6), 0 0 30px 10px rgba(192, 192, 192, 0.4);
-}
-
-.stats-btn {
-  background-color: #005925;
-  /* border: 1px solid silver; */
-  color: #fff; /* Text color */
-  padding: 5px 10px;
-  border-radius: 20px;
-  box-shadow: 0 0 10px 2px rgba(192, 192, 192, 0.8);
-}
-.change-profile-btn:hover {
-  box-shadow: 0 0 10px 2px rgba(192, 192, 192, 0.8), 0 0 20px 6px rgba(192, 192, 192, 0.6), 0 0 30px 10px rgba(192, 192, 192, 0.4);
-}
-
-.section-heading {
-  margin-top: 0;
-  color: #333;
-}
-
-.details-list,
-.stats-list {
-  list-style: none;
-  padding: 0;
-}
-
-.details-list li,
-.stats-list li {
-  margin-bottom: 10px;
-}
-
-.details-list li strong,
-.stats-list li strong {
-  color: #333;
-  margin-right: 5px;
-}
-
-
-.panel {
-  max-width: 540px;
-  margin: 50px auto;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  background-color: #f8efb5;
-  border: 1px solid #ccc;
-  padding: 20px;
-  width: 40vw;
-}
-
-.glowing-text {
-  font-size: 16px;
-  color: #132400; /* Initial color of text */
-  /* text-shadow: 0 0 10px #00ff00, 0 0 15px #00ff00, 0 0 20px #00ff00;  */
-}
-
-@keyframes glow {
-  from {
-    text-shadow: 0 0 10px #ffff00, 0 0 20px #ffff00, 0 0 30px #0000ff; /* Start glowing with yellow and blue */
-    /* text-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00, 0 0 30px #00ff00; */
-  }
-  /* to {
-    text-shadow: 0 0 20px #ff0000, 0 0 30px #ff0000, 0 0 40px #ff0000;
-  } */
-}
-
-.stats {
-  margin-top: 20px;
-}
-.stats-item {
-  margin-bottom: 10px;
-}
-.stats-item span {
-  font-weight: bold;
-  margin-right: 5px;
-}
-
-
-
-
-</style>
 
 
 <!--
@@ -374,4 +81,10 @@ more media usage for css
 
 
 change sidebar buttons to links??
+
+sidebar toggler shoudl disappear when sidebar is clicked
+login button moves weirdly after register page
+
+
+when making win bigger sidebar shows up for a moment
 -->
