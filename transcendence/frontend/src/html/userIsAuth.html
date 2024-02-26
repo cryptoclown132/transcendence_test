@@ -1,66 +1,64 @@
+<div id="wrapper">
+  <div class="overlay"></div>
+   
+       <!-- Sidebar -->
+   <nav class="navbar navbar-inverse fixed-top" id="sidebar-wrapper" role="navigation">
+    <ul class="nav sidebar-nav">
+      <li>
+        <button id="profileButton" class=" sidebar-btn-profile"></button>
+      </li>
+     
+      <li><button id="homeButton" class="nav-link active sidebar-btn-home" >HOME</button></li>
+        
+      <li><button id="showChatButton" class="nav-link active sidebar-btn-chat">CHAT</button></li>
+       
+     <li><button id="statsButton" class="nav-link active sidebar-btn-stats" >STATS</button></li>
+        
+      
+      <li><button id="gameButton" class="nav-link active sidebar-btn-game" >GAME</button></li>
+        
+     </ul>
+ </nav>
+       <!-- /#sidebar-wrapper -->
 
-<div id="sidebar" class="sidebar">
-  <!-- <div id="rightPlayer" class="playerInfo"> -->
-  <div>
-    <!-- <div id="profileButton" class="nav-link active nav-button-style"> 
-      <img src="https://www.course-api.com/images/people/person-1.jpeg" id="imageSidebar" class="img-fluid circular-image"  alt="Profile Button">
-    </div> -->
-    <!-- <button id="profileButton" class=" sidebar-btn-profile  img-fluid circular-image"></button> -->
-    <button id="profileButton" class=" sidebar-btn-profile"></button>
-  </div>
-  <div>
-    <!-- <a id="homeButton" class="nav-link active sidebar-btn-home" href="/home/">Home</a> -->
-    <button id="homeButton" class="nav-link active sidebar-btn-home" >HOME</button>
-  </div>
-  <div>
-    <!-- <a id="showChatButton" class="nav-link active sidebar-btn-chat" href="/chat/">Home</a> -->
-    <button id="showChatButton" class="nav-link active sidebar-btn-chat">CHAT</button>
-  </div>
-  <div>
-    <!-- <a id="nothingButton" class="nav-link active sidebar-btn-nothing" href="/nothing/">Home</a> -->
-    <button id="statsButton" class="nav-link active sidebar-btn-stats" >STATS</button>
-  </div>
-  <div>
-    <!-- <a id="gameButton" class="nav-link active sidebar-btn-game" href="/game/">Home</a> -->
-    <button id="gameButton" class="nav-link active sidebar-btn-game" >GAME</button>
-  </div>
-  <button id="close-sidebar-btn" type="button" class="btn"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="currentColor" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
-    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293z"/>
-    </svg></button>
-  <!-- <button id="close-sidebar-btn" class="btn closeSidebar-btn"> -->
-    
-<!-- </button> -->
+       <!-- Page Content -->
+       <!-- <div id="page-content-wrapper"> -->
+           <button id="sidebar-toggler" type="button" class="hamburger animated fadeInLeft is-closed" data-toggle="offcanvas">
+               <span class="hamb-top"></span>
+         <span class="hamb-middle"></span>
+       <span class="hamb-bottom"></span>
+           </button>
+           <!-- <div class="container">
+               <div class="row">
+                   <div class="col-lg-8 col-lg-offset-2"> -->
+                                     
+                   <!-- </div> -->
+               <!-- </div> -->
+           <!-- </div>
+       </div> -->
+       <!-- /#page-content-wrapper -->
 
-</div>
+   </div>
+   <div id="profileSite" class="profile-site hidden"></div>
 
-
-
-<div id="profileSite" class="profile-site hidden"></div>
-
-<div id="homeSite" class="home">
-  <br><h1 id="displayUserName"></h1><br>
-
-    <div id="centered-image" class="centered-image">
-      <!-- <img src="./ballWithEye.jpg" alt="Centered Image"> -->
-    </div>
-
-  <div id="showUserProfile" class="">
-    <button type="button" id="logoutButton" class="btn btn-danger logout-btn">Logout</button>
-  </div>
-  
-</div>
-<button id="sidebar-toggler" class="sidebar-toggler">
-  <!-- Menu -->
-</button>
-<div id="chat" class="chat hidden"></div>
-
-<!--NEW GAME HERE-->
-<div id="gameSite" class="game-site hidden"></div>
-
-
-<!--DELETE LATER: testing stuff-->
-<div id="statsSite" class="hidden"></div>
-
-
-
-
+   <div id="homeSite" class="home">
+     <br><h1 id="displayUserName"></h1><br>
+   
+       <div id="centered-image" class="centered-image">
+         <!-- <img src="./ballWithEye.jpg" alt="Centered Image"> -->
+       </div>
+   
+     <div id="showUserProfile" class="">
+       <button type="button" id="logoutButton" class="btn btn-danger logout-btn">Logout</button>
+     </div>
+     
+   </div>
+   
+   <div id="chat" class="chat hidden"></div>
+   
+   <!--NEW GAME HERE-->
+   <div id="gameSite" class="game-site hidden"></div>
+   
+   
+   <!--DELETE LATER: testing stuff-->
+   <div id="statsSite" class="hidden"></div>   

@@ -33,7 +33,7 @@ end
 # Unset irrelevant variables.
 deactivate nondestructive
 
-set -gx VIRTUAL_ENV "/home/jkroger/Documents/Codespace/cendence/transcendence/.venv"
+set -gx VIRTUAL_ENV "/home/jkroger/Documents/Codespace/frontendforcendence/transcendence/.venv"
 
 set -gx _OLD_VIRTUAL_PATH $PATH
 set -gx PATH "$VIRTUAL_ENV/bin" $PATH

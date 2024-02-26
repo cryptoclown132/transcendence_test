@@ -78,20 +78,64 @@ function addEventListenersIsAuth() {
       await sendDataToBackend('get_blocked_user') // NEW since 02.02
       showSiteHideOthers('chat')
     }
-
-    const sidebar = document.getElementById("sidebar")
-    if (event.target.id === "sidebar-toggler") {
-
-      sidebar.classList.add("show-sidebar");
-      addShrinkForSites();
-      rmSidebarToggle();
+    var trigger = document.querySelector('.hamburger');
+    var overlay = document.querySelector('.overlay');
+    if (!trigger.hasEventListener) {
+      trigger.hasEventListener = true;
+        trigger.addEventListener('click', function() {
+          event.stopPropagation();
+          if (!document.getElementById("sidebar-toggler").classList.contains("is-closed")) {
+            console.log("shop closes");
+    
+            overlay.style.display = 'none';
+            trigger.classList.remove('is-open');
+            trigger.classList.add('is-closed');
+            addShrinkForSites();
+          }
+          else {
+            console.log("shop opens");
+            overlay.style.display = 'block';
+            trigger.classList.remove('is-closed');
+            trigger.classList.add('is-open');
+            rmShrinkForSites();
+          }
+        });
+        var offcanvasToggle = document.querySelectorAll('[data-toggle="offcanvas"]');
+        offcanvasToggle.forEach(function(item) {
+          item.addEventListener('click', function() {
+            var wrapper = document.getElementById('wrapper');
+            wrapper.classList.toggle('toggled');
+          });
+        });
     }
-    if (event.target.id === "close-sidebar-btn") {
-      console.log("closed toggled ");
-      sidebar.classList.remove("show-sidebar");
-      rmShrinkForSites();
-      addSidebarToggle();
-    }
+
+    // if (event.target.id === "sidebar-toggler") {
+
+      
+    // }
+
+
+  
+  
+
+    // const sidebar = document.getElementById("sidebar")
+    // if (event.target.id === "sidebar-toggler") {
+
+    //   if (!sidebar.classList.contains("show-sidebar")) {
+    //     sidebar.classList.add("show-sidebar");
+    //     addShrinkForSites();
+
+    //     document.getElementById("sidebar-toggler").classList.add("sidebar-toggler-left");
+    //     // rmSidebarToggle();
+    //   }
+    //   else {
+    //     sidebar.classList.remove("show-sidebar");
+    //     rmShrinkForSites();
+    //     document.getElementById("sidebar-toggler").classList.remove("sidebar-toggler-left");
+    //     // addSidebarToggle();
+    //   }
+    // }
+
 
   //   const sidebarToggle = document.getElementById("sidebar-toggler");
   // const closeSidebarBtn = document.getElementById("close-sidebar-btn");
