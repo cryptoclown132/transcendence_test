@@ -84,19 +84,23 @@ function addEventListenersIsAuth() {
       trigger.hasEventListener = true;
         trigger.addEventListener('click', function() {
           event.stopPropagation();
-          if (!document.getElementById("sidebar-toggler").classList.contains("is-closed")) {
+          if (document.getElementById("sidebar-toggler").classList.contains("is-closed")) {
             console.log("shop closes");
-    
-            overlay.style.display = 'none';
-            trigger.classList.remove('is-open');
-            trigger.classList.add('is-closed');
-            addShrinkForSites();
-          }
-          else {
-            console.log("shop opens");
+            console.log(document.getElementById("sidebar-toggler").classList.contains("is-closed"));
+            
             overlay.style.display = 'block';
             trigger.classList.remove('is-closed');
             trigger.classList.add('is-open');
+            addShrinkForSites();
+           
+          }
+          else {
+            console.log(document.getElementById("sidebar-toggler").classList.contains("is-closed"));
+            console.log("shop opens");
+            overlay.style.display = 'none';
+            trigger.classList.remove('is-open');
+            trigger.classList.add('is-closed');
+            
             rmShrinkForSites();
           }
         });
@@ -306,13 +310,14 @@ function rmShrinkForSites() {
   const chat = document.getElementById("chat");
   const gameSite = document.getElementById("gameSite");
   const profileSite = document.getElementById("profileSite");
- 
+  const statsSite = document.getElementById("statsSite");
   
   homeSite.classList.remove("shrink");
   homeImage.classList.remove("shrink");
   chat.classList.remove("shrink");
   gameSite.classList.remove("shrink");
   profileSite.classList.remove("shrink");
+  statsSite.classList.remove("shrink");
 }
 
 function rmSidebarToggle() {
@@ -327,12 +332,14 @@ function addShrinkForSites() {
   const chat = document.getElementById("chat");
   const gameSite = document.getElementById("gameSite");
   const profileSite = document.getElementById("profileSite");
+  const statsSite = document.getElementById("statsSite");
   
   homeSite.classList.add("shrink");
   homeImage.classList.add("shrink");
   chat.classList.add("shrink");
   gameSite.classList.add("shrink");
   profileSite.classList.add("shrink");
+  statsSite.classList.add("shrink");
 }
 
 function addSidebarToggle() {
