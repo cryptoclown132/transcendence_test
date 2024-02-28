@@ -938,11 +938,11 @@ box-shadow: 0 0 20px 4px rgba(236, 200, 93, 0.8),
   margin-right: 4vw;
   margin-left: 4vw;
 }
-.sidebar-btn-profile:hover {
+/* .sidebar-btn-profile:hover {
   background: #ecc85d !important;
   border-radius: 10px;
-  /* box-shadow: 0 0 10px 2px rgba(239, 114, 103, 0.8), 0 0 20px 6px rgba(239, 114, 103, 0.6), 0 0 30px 10px rgba(239, 114, 103, 0.4); */
-}
+  box-shadow: 0 0 10px 2px rgba(239, 114, 103, 0.8), 0 0 20px 6px rgba(239, 114, 103, 0.6), 0 0 30px 10px rgba(239, 114, 103, 0.4);
+} */
 
 .sidebar-toggle {
   position: fixed;
