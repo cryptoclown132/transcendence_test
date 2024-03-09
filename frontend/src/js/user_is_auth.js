@@ -47,17 +47,40 @@ function addEventListenersIsAuth() {
   }
   loadStats('html/stats.html', 'statsSite');
 
+  function loadCreators(file, targetId) {
+    fetch(file)
+        .then(response => response.text())
+        .then(html => {
+          document.getElementById(targetId).innerHTML = html;
+          // chatDom();
+        })
+        .catch(error => console.error('Error loading content:', error));
+  }
+  loadCreators('html/creators.html', 'creatorsSite');
+
   document.addEventListener('click', async function(event) {   
     console.log(event.target);
     console.log(event.target.id);
     
-    if (event.target.id === 'homeButton')
+    // if (event.target.id === 'homeButton')
+    //   showSiteHideOthers('homeSite');
+    // else if (event.target.id === 'gameButton')
+    //   showSiteHideOthers('gameSite');
+    // else if (event.target.id === 'statsButton')
+    //   showSiteHideOthers('statsSite');
+    // else if (event.target.id === 'showChatButton') {
+    //   await sendDataToBackend('get_current_users_chats')
+    //   await sendDataToBackend('get_blocked_by_user')
+    //   await sendDataToBackend('get_blocked_user') // NEW since 02.02
+    //   showSiteHideOthers('chat')
+    // }
+    if (event.target.closest('#homeButton'))
       showSiteHideOthers('homeSite');
-    else if (event.target.id === 'gameButton')
+    else if (event.target.closest('#gameButton'))
       showSiteHideOthers('gameSite');
-    else if (event.target.id === 'statsButton')
+    else if (event.target.closest('#statsButton'))
       showSiteHideOthers('statsSite');
-    else if (event.target.id === 'showChatButton') {
+    else if (event.target.closest('#showChatButton')) {
       await sendDataToBackend('get_current_users_chats')
       await sendDataToBackend('get_blocked_by_user')
       await sendDataToBackend('get_blocked_user') // NEW since 02.02
@@ -65,41 +88,45 @@ function addEventListenersIsAuth() {
     }
     else if (event.target.closest('#profileButton'))
       showSiteHideOthers('profileSite');
+      else if (event.target.closest('#creatorsButton'))
+      showSiteHideOthers('creatorsSite');
+    else if (event.target.closest('#logoutButton'))
+      await logoutUser();
 
-    var trigger = document.querySelector('.hamburger');
-    var overlay = document.querySelector('.overlay');
-    if (!trigger.hasEventListener) {
-      trigger.hasEventListener = true;
-        trigger.addEventListener('click', function() {
-          event.stopPropagation();
-          if (document.getElementById("sidebar-toggler").classList.contains("is-closed")) {
-            console.log("shop closes");
-            console.log(document.getElementById("sidebar-toggler").classList.contains("is-closed"));
+    // var trigger = document.querySelector('.hamburger');
+    // var overlay = document.querySelector('.overlay');
+    // if (!trigger.hasEventListener) {
+    //   trigger.hasEventListener = true;
+    //     trigger.addEventListener('click', function() {
+    //       event.stopPropagation();
+    //       if (document.getElementById("sidebar-toggler").classList.contains("is-closed")) {
+    //         console.log("shop closes");
+    //         console.log(document.getElementById("sidebar-toggler").classList.contains("is-closed"));
             
-            overlay.style.display = 'block';
-            trigger.classList.remove('is-closed');
-            trigger.classList.add('is-open');
-            addShrinkForSites();
+    //         overlay.style.display = 'block';
+    //         trigger.classList.remove('is-closed');
+    //         trigger.classList.add('is-open');
+    //         addShrinkForSites();
            
-          }
-          else {
-            console.log(document.getElementById("sidebar-toggler").classList.contains("is-closed"));
-            console.log("shop opens");
-            overlay.style.display = 'none';
-            trigger.classList.remove('is-open');
-            trigger.classList.add('is-closed');
+    //       }
+    //       else {
+    //         console.log(document.getElementById("sidebar-toggler").classList.contains("is-closed"));
+    //         console.log("shop opens");
+    //         overlay.style.display = 'none';
+    //         trigger.classList.remove('is-open');
+    //         trigger.classList.add('is-closed');
             
-            rmShrinkForSites();
-          }
-        });
-        var offcanvasToggle = document.querySelectorAll('[data-toggle="offcanvas"]');
-        offcanvasToggle.forEach(function(item) {
-          item.addEventListener('click', function() {
-            var wrapper = document.getElementById('wrapper');
-            wrapper.classList.toggle('toggled');
-          });
-        });
-    } 
+    //         rmShrinkForSites();
+    //       }
+    //     });
+    //     var offcanvasToggle = document.querySelectorAll('[data-toggle="offcanvas"]');
+    //     offcanvasToggle.forEach(function(item) {
+    //       item.addEventListener('click', function() {
+    //         var wrapper = document.getElementById('wrapper');
+    //         wrapper.classList.toggle('toggled');
+    //       });
+    //     });
+    // } 
   });
 }
 
@@ -108,25 +135,25 @@ function addEventListenersIsAuth() {
 function showSiteHideOthers(site_to_show) {
   console.log(site_to_show);
 
-  const sites = ['gameSite', 'statsSite', 'homeSite', 'chat', 'profileSite'];
+  const sites = ['gameSite', 'statsSite', 'homeSite', 'chat', 'profileSite', 'creatorsSite'];
   sites.forEach(site => {
     if (site === site_to_show) showDiv(site)
     else hideDiv(site)
   });
 
 
-  if (!document.getElementById("sidebar-toggler").classList.contains("is-closed")) {
+  // if (!document.getElementById("sidebar-toggler").classList.contains("is-closed")) {
    
-    var trigger = document.querySelector('.hamburger');
-    var overlay = document.querySelector('.overlay');
-    overlay.style.display = 'none';
-    trigger.classList.remove('is-open');
-    trigger.classList.add('is-closed');
+  //   var trigger = document.querySelector('.hamburger');
+  //   var overlay = document.querySelector('.overlay');
+  //   overlay.style.display = 'none';
+  //   trigger.classList.remove('is-open');
+  //   trigger.classList.add('is-closed');
     
-    var wrapper = document.getElementById('wrapper');
-    wrapper.classList.toggle('toggled');
-    rmShrinkForSites();
-  }
+  //   var wrapper = document.getElementById('wrapper');
+  //   wrapper.classList.toggle('toggled');
+  //   rmShrinkForSites();
+  // }
 
 
 

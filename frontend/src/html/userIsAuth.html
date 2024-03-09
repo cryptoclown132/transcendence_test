@@ -1,69 +1,78 @@
-<div id="wrapper">
-  <div class="overlay"></div>
-   
-       <!-- Sidebar -->
-   <nav class="navbar navbar-inverse fixed-top" id="sidebar-wrapper" role="navigation">
-    <ul class="nav sidebar-nav">
-      <li>
-        <button aria-label="Profile" id="profileButton" class="sidebar-btn-profile">
-          <svg xmlns="http://www.w3.org/2000/svg" width="7vw" height="7vw" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
-          <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
-          <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/>
-          </svg>
-       </button>
-      </li>
-     
-      <li><button id="homeButton" class="nav-link active sidebar-btn" >HOME</button></li>
-        
-      <li><button id="showChatButton" class="nav-link active sidebar-btn">CHAT</button></li>
-       
-     <li><button id="statsButton" class="nav-link active sidebar-btn" >STATS</button></li>
-        
-      
-      <li><button id="gameButton" class="nav-link active sidebar-btn" >GAME</button></li>
-        
-    </ul>
- </nav>
-       <!-- /#sidebar-wrapper -->
+<!-- <div class="test-div-for-side"> -->
+  <ul class="nav sidebar-nav test-list">
+    <li>
+      <button aria-label="Profile" id="profileButton" class="sidebar-btn-profile">
+        <i class="bi bi-person"></i>
+      </button>
+    </li>
+    
+  
+    <li>
+      <button aria-label="Home" id="homeButton" class="sidebar-btn-profile">
+        <i class="bi bi-house-door"></i>
+      </button>
+    </li>
+  
+    <li>
+      <button aria-label="Chat" id="showChatButton" class="sidebar-btn-profile">
+        <i class="bi bi-chat"></i>
+      </button>
+    </li>
+  
+    <li>
+      <button aria-label="Stats" id="statsButton" class="sidebar-btn-profile">
+        <i class="bi bi-bar-chart"></i>
+      </button>
+    </li>
+  
+    <li>
+      <button aria-label="Game" id="gameButton" class="sidebar-btn-profile">
+        <i class="bi bi-controller"></i>
+      </button>
+    </li>
 
-       <!-- Page Content -->
-       <!-- <div id="page-content-wrapper"> -->
-        <button aria-label="Sidebar Toggle" id="sidebar-toggler" type="button" class="hamburger animated fadeInLeft is-closed" data-toggle="offcanvas">
-          <span class="hamb-top"></span>
-          <span class="hamb-middle"></span>
-          <span class="hamb-bottom"></span>
-        </button>
-           <!-- <div class="container">
-               <div class="row">
-                   <div class="col-lg-8 col-lg-offset-2"> -->
-                                     
-                   <!-- </div> -->
-               <!-- </div> -->
-           <!-- </div>
-       </div> -->
-       <!-- /#page-content-wrapper -->
+    <li>
+      <button aria-label="Creators" id="creatorsButton" class="sidebar-btn-profile">
+        <i class="bi bi-github"></i>
+      </button>
+    </li>
+  </ul>
+<!-- </div> -->
 
-   </div>
-   <div id="profileSite" class="profile-site hidden"></div>
 
-   <div id="homeSite" class="home">
-     <br><h1 id="displayUserName" class="user-name-display"></h1><br>
+
+
+
+    
+<div class="site-content">
+  <div id="profileSite" class="profile-site hidden"></div>
+
+  <div id="homeSite" class="home">
+    <br><h1 id="displayUserName" class="user-name-display"></h1><br>
+
+      <div id="centered-image" class="centered-image">
+        <!-- <img src="./ballWithEye.jpg" alt="Centered Image"> -->
+      </div>
+
+    <div id="showUserProfile" class="">
+      <button type="button" id="logoutButton" class="btn btn-danger logout-btn">Logout</button>
+    </div>
+  </div>
+  <div id="chat" class="chat hidden"></div>
+
+  <!--NEW GAME HERE-->
+  <div id="gameSite" class="game-site hidden"></div>
+
+
+  <!--DELETE LATER: testing stuff-->
+  <div id="statsSite" class="stats-site hidden"></div>
+
+  <div id="creatorsSite" class="creators-site hidden"></div>
+</div>
+
+
+
+
+
+
    
-       <div id="centered-image" class="centered-image">
-         <!-- <img src="./ballWithEye.jpg" alt="Centered Image"> -->
-       </div>
-   
-     <div id="showUserProfile" class="">
-       <button type="button" id="logoutButton" class="btn btn-danger logout-btn">Logout</button>
-     </div>
-     
-   </div>
-   
-   <div id="chat" class="chat hidden"></div>
-   
-   <!--NEW GAME HERE-->
-   <div id="gameSite" class="game-site hidden"></div>
-   
-   
-   <!--DELETE LATER: testing stuff-->
-   <div id="statsSite" class="stats-site hidden"></div>   

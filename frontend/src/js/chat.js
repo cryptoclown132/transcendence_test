@@ -20,9 +20,9 @@ function chatDom() {
     await inviteUser(invited_user_name)
   })
 
-  document.getElementById('logoutButton').addEventListener('click', async function () {
-    await logoutUser()
-  })
+  // document.getElementById('logoutButton').addEventListener('click', async function () {
+  //   await logoutUser()
+  // })
 
   document.getElementById('create_public_chat_button').addEventListener('click', async function() {
     await createPublicChat()
