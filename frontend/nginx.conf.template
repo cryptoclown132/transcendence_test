@@ -1,6 +1,14 @@
 events {}
 
 http {
+    # Other configurations...
+
+    types {
+        text/css css;
+        text/html   html;
+        application/javascript  js;
+        # Other MIME types...
+    }
 
     server {
         listen 4242 default_server;
@@ -18,4 +26,6 @@ http {
             try_files $uri $uri/ =404;
         }
     }
+
+    # Other server blocks and configurations...
 }

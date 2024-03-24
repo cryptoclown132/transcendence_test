@@ -173,27 +173,31 @@ async function establishWebsocketConnection() {
       case 'game_start':
         console.log("GAME START");
         document.getElementById("waitingScreen").style.display = "none";
+        
+      //   setTimeout(() => {
+      //   startCountdownAnimation();
+      // }, 3000);
         launchGame();
         break
       case 'ball_update':
-        console.log("BALL_UPDATE");
+        // console.log("BALL_UPDATE");
         // websocket_obj.game.ball_x = data.ball_x
         const canvas = document.getElementById("pongCanvas");
         websocket_obj.game.ball_x = data.ball_x * canvas.width / 4;
-        console.log("ball_x: ", websocket_obj.game.ball_x)
-        console.log("data.ball_x: ", data.ball_x)
-        console.log("data.ball_y: ", data.ball_y)
+        // console.log("ball_x: ", websocket_obj.game.ball_x)
+        // console.log("data.ball_x: ", data.ball_x)
+        // console.log("data.ball_y: ", data.ball_y)
         // // websocket_obj.game.ball_y = data.ball_y
         websocket_obj.game.ball_y = data.ball_y * canvas.height / 2;
-        console.log("ball_y: ", websocket_obj.game.ball_y);
+        // console.log("ball_y: ", websocket_obj.game.ball_y);
         await update();
         break
       case 'score_update':
         console.log("SCORE_UPDATE");
         websocket_obj.game.host_score = data.host_score
         websocket_obj.game.guest_score = data.guest_score
-        console.log("host_score: ", websocket_obj.game.host_score);
-        console.log("guest_score: ", websocket_obj.game.guest_score);
+        // console.log("host_score: ", websocket_obj.game.host_score);
+        // console.log("guest_score: ", websocket_obj.game.guest_score);
         await updateScore();
         break
       case 'game_over':

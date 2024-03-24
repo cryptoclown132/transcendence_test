@@ -8,9 +8,21 @@ function gameDom() {
 
 
 async function joinGame(gameId) {
+  document.getElementById("renderNewInv").classList.add("hidden");
 
   console.log('In JoinGame');
-  document.getElementById("showGameField").style.display = "block";
+  // document.getElementById("showGameField").style.display = "block";
+  // const startScreen = document.getElementById("start-screen");
+
+  // const startScreenBtn = document.getElementById("renderInv");
+
+  const gameScreen = document.getElementById("game-screen");
+
+  const waitingScreen = document.getElementById("waitingScreen");
+
+
+
+  
 
   const canvas = document.getElementById("pongCanvas");
   const ctx = canvas.getContext("2d");
@@ -49,7 +61,15 @@ async function joinGame(gameId) {
 
   // window.addEventListener("load", updateCanvasSize);
 
+  document.getElementById("invites-screen").classList.add("hidden");
+  // document.getElementById("game-session-container").style.display = "none";
+  // waitingScreen.classList.add("show");
+  // console.log("waitingScreen show");
+  // waitingScreen.classList.remove("show");
+  // console.log("waitingScreen remove show");
 
+  document.getElementById("pongCanvas").classList.remove("hidden");
+  gameScreen.classList.add("show");
   await sendDataToBackend('init_game');
 
   document.addEventListener("keydown", async function(event) {
@@ -74,15 +94,19 @@ async function joinGame(gameId) {
 
 }
 
-async function requestInvites() {
-  await sendDataToBackend('request_invites');
+// function requestInvites() {
+//   console.log('In requestInvites manyak');
+// }
 
+async function requestInvites() {
+  document.getElementById("start-screen").classList.add("hidden");
+  document.getElementById("invites-screen").classList.remove("hidden");
+  await sendDataToBackend('request_invites');
 }
 
 
 
 async function renderInvites() {
-
   if (websocket_obj.game.invites != 0)
   {
     // const htmlContent = await response.text();
@@ -96,21 +120,48 @@ async function renderInvites() {
     const container = document.getElementById('game-session-container');
     container.innerHTML = generateHTMLContent(matches);
     
-    function generateHTMLContent(matches) {
-      let htmlContent = '';
-      if (matches.length > 0) {
-        htmlContent += '<ul>';
-        matches.forEach(match => {
-          htmlContent += `<li>Opponent: ${match.opponent_name}, Game ID: ${match.game_id}</li>`;
-          htmlContent += `<button class="join-game-btn" data-gameid="${match.game_id}">Join Game</button></li>`;
 
-        });
-        htmlContent += '</ul>';
-      } else {
-        htmlContent = '<p>No matches found.</p>';
-      }
-      return htmlContent;
+
+
+
+  //   <ul style="justify-content: center; margin-left: 30vw;">
+  //   <li style="color: #ecc85d; margin-bottom: 20px; margin-top: 20px;">Opponent: ${match.opponent_name}, Game ID: ${match.game_id}</li>
+  //   <button class="join-game-btn btn btn-secondary" data-gameid="${match.game_id}">Join Game</button>
+  // </ul>
+
+  function generateHTMLContent(matches) {
+    let htmlContent = '';
+    if (matches.length > 0) {
+      htmlContent += '<ul style="justify-content: center; margin-left: 30vw;">';
+      matches.forEach(match => {
+        htmlContent += `<li style="color: #ef7267; margin-bottom: 20px; margin-top: 20px;">Opponent: ${match.opponent_name}, Game ID: ${match.game_id}</li>`;
+        htmlContent += `<button style="background-color: #ecc85d; color: black;" class="join-game-btn btn btn-secondary" data-gameid="${match.game_id}">Join Game</button></li>`;
+
+      });
+      htmlContent += '</ul>';
+    } else {
+      htmlContent = '<p>No matches found.</p>';
     }
+    return htmlContent;
+  }
+
+
+
+    // function generateHTMLContent(matches) {
+    //   let htmlContent = '';
+    //   if (matches.length > 0) {
+    //     htmlContent += '<ul>';
+    //     matches.forEach(match => {
+    //       htmlContent += `<li>Opponent: ${match.opponent_name}, Game ID: ${match.game_id}</li>`;
+    //       htmlContent += `<button class="join-game-btn" data-gameid="${match.game_id}">Join Game</button></li>`;
+
+    //     });
+    //     htmlContent += '</ul>';
+    //   } else {
+    //     htmlContent = '<p>No matches found.</p>';
+    //   }
+    //   return htmlContent;
+    // }
 
     container.querySelectorAll('.join-game-btn').forEach(button => {
       button.addEventListener('click', function() {
@@ -250,24 +301,25 @@ function drawPaddles() {
 
   const ctx = canvas.getContext("2d");
 
-  console.log("left pedal: ", websocket_obj.game.left_pedal);
-  console.log("right pedal: ", websocket_obj.game.right_pedal);
+  // console.log("left pedal: ", websocket_obj.game.left_pedal);
+  // console.log("right pedal: ", websocket_obj.game.right_pedal);
   left_pedal = canvas.height * websocket_obj.game.left_pedal / 2
   right_pedal = canvas.height * websocket_obj.game.right_pedal / 2
 
 
 
-  console.log("left pedal: ", left_pedal);
-  console.log("right pedal: ", right_pedal);
+  // console.log("left pedal: ", left_pedal);
+  // console.log("right pedal: ", right_pedal);
 
-  console.log ("canvas.width: ", canvas.width);
-  console.log ("canvas.height: ", canvas.height);
+  // console.log ("canvas.width: ", canvas.width);
+  // console.log ("canvas.height: ", canvas.height);
   // console.log ("canvas.width / 80: ", canvas.width / 80);
   // console.log ("canvas.height / 8: ", canvas.height / 8);
   // console.log ("canvas.height / 4: ", canvas.height / 4);
 
 
-  ctx.fillStyle = "black";
+  // ctx.fillStyle = "black";
+  ctx.fillStyle = "#131615";
 
   ctx.fillRect(
     canvas.width / 80,
@@ -283,7 +335,7 @@ function drawPaddles() {
 }
 
 function drawBall() {
-  console.log("in drawBall WEBSOCKETS.JS");
+  // console.log("in drawBall WEBSOCKETS.JS");
 
   const canvas = document.getElementById("pongCanvas");
 
@@ -295,7 +347,7 @@ function drawBall() {
   radius = canvas.height / 40
 
   ctx.arc(websocket_obj.game.ball_x, websocket_obj.game.ball_y, radius, 0, Math.PI * 2);
-  console.log("BALL canvas.width / 80", canvas.width / 80)
+  // console.log("BALL canvas.width / 80", canvas.width / 80)
   // ctx.arc(canvas.width / 2, canvas.height / 2, canvas.width / 80, 0, Math.PI * 2);
 
   ctx.fill();
@@ -324,6 +376,8 @@ async function updateScore() {
 
 async function launchGame()
 {
+  console.log('In launchGame');
+
   // document.getElementById("waitingScreen").style.display = "none";
 
   const canvas = document.getElementById("pongCanvas");
@@ -383,84 +437,8 @@ async function launchGame()
 
 
 
-// function handleDOMChangesGame() {
-//   const startScreen = document.getElementById("start-screen");
-//   const inviteScreen = document.getElementById("game-invitation");
-//   const startScreenBtn = document.getElementById("start-screen-btn");
-//   const inviteScreenBtn = document.getElementById("send-invite-btn");
-//   const gameScreen = document.getElementById("game-screen");
-//   const loadingScreen = document.getElementById("loader");
-
-//   // const sidebar = document.getElementById("sidebar")
-//   // const sidebarToggle = document.getElementById("sidebar-toggler");
-
-//   // const gameSite = document.getElementById("gameSite");
-
-//   // sidebarToggle.addEventListener('click', function () {
-//   //   if (sidebar.classList.contains("show-sidebar")) 
-//   //     gameSite.classList.add("shrink");
-//   //   else
-//   //     gameSite.classList.remove("shrink");
-//   // });
-
-//   if (startScreenBtn && inviteScreenBtn) {
-//     startScreenBtn.addEventListener('click', () => {
-//       startScreen.classList.add("hidden");
-//       inviteScreen.classList.add("show");
-//     })
-  
-//     inviteScreenBtn.addEventListener('click', () => {
-//         const usernameInput = document.querySelector('.input-user-field');
-//         const username = usernameInput.value.trim();
-    
-//         if (username === '') { // check if user existing
-//           alert('Please fill in the username field.');
-//           return;
-//         }
-//         inviteScreen.classList.remove("show");
-//         loadingScreen.classList.add("show");
-//         setTimeout(function() {
-//           loadingScreen.classList.remove("show");
-//           gameScreen.classList.add("show");
-//         }, 1300);
-//       })
-//   }
-// }
-
-
-// const observerGame = new MutationObserver(function(mutations) {
-//   mutations.forEach(function(mutation) {
-//     // Check if the desired elements are added or modified
-//     handleDOMChangesGame();
-//   });
-// });
-
-// // Start observing the DOM
-// observerGame.observe(document.body, { childList: true, subtree: true });
-
-
-
-
 function handleDOMChangesGame() {
-  const startScreen = document.getElementById("start-screen");
 
-  const startScreenBtn = document.getElementById("renderInv");
-
-  const gameScreen = document.getElementById("game-screen");
-
-  const waitingScreen = document.getElementById("waitingScreen");
-
-
-  if (startScreenBtn) {
-    startScreenBtn.addEventListener('click', () => {
-      startScreen.classList.add("hidden");
-      waitingScreen.classList.add("show");
-    })
-    setTimeout(function() {
-      waitingScreen.classList.remove("show");
-      gameScreen.classList.add("show");
-    }, 2300);
-  }
 }
 
 
@@ -473,3 +451,35 @@ const observerGame = new MutationObserver(function(mutations) {
 
 // Start observing the DOM
 observerGame.observe(document.body, { childList: true, subtree: true });
+
+
+
+
+
+  // Variables for countdown
+  let countdown = 3;
+  let countdownInterval;
+
+  // Function to draw countdown
+  function drawCountdown() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.font = '48px Arial';
+    ctx.fillStyle = 'black';
+    ctx.textAlign = 'center';
+    ctx.fillText(countdown, canvas.width / 2, canvas.height / 2);
+  }
+
+  // Function to start countdown animation
+  function startCountdownAnimation() {
+    countdownInterval = setInterval(() => {
+      countdown--;
+      if (countdown <= 0) {
+        clearInterval(countdownInterval);
+        // Start your game here after countdown
+        console.log('Game started!');
+        return;
+      }
+      drawCountdown();
+    }, 1000);
+  }
+

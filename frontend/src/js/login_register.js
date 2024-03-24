@@ -23,17 +23,22 @@ function addEventListenersNotAuth() {
     fetch(url)
       .then(response => {
         if (!response.ok) {
+          document.getElementById("wrong-password").classList.remove("hidden");
           switch (response.status) {
             case 404:
               document.getElementById("loginUsername").style.border = "1px solid red";
+              document.getElementById("wrong-password").innerHTML = "This User does not exist!";
               throw new Error('This User does not exist!');
             case 401:
               document.getElementById("loginPassword").style.border = "1px solid red";
+              document.getElementById("wrong-password").innerHTML = "Credentials are wrong!";
               throw new Error('Credentials are wrong!');
             default:
+              document.getElementById("wrong-password").innerHTML = "Unexpected Error: Failed to check Credentials!";
               throw new Error('Unexpected Error: Failed to check Credentials')
           }
         }
+        document.getElementById("wrong-password").classList.add("hidden");
         return response.json();
       })
       .then(data => {
@@ -65,14 +70,20 @@ function addEventListenersNotAuth() {
     fetch(url)
       .then(response => {
         if (!response.ok) {
+          document.getElementById("wrong-register").classList.remove("hidden");
           switch (response.status) {
             case 409:
               document.getElementById("registerUsername").style.border = "1px solid red";
+              document.getElementById("wrong-register").innerHTML = "This Username already exist!";
               throw new Error('This Username already exist')
             default:
+              document.getElementById("wrong-register").innerHTML = "Unexpected Error: Failed to create new Account!";
               throw new Error('Unexpected Error: Failed to create new Account')
           }
         }
+        document.getElementById("wrong-register").classList.add("hidden");
+        showDiv('loginPage');
+        hideDiv('registerPage');
         return response.json();
       })
       .then(data => {
@@ -95,6 +106,7 @@ function addEventListenersNotAuth() {
   document.getElementById('changeToLoginPageButton').addEventListener('click', function () {
     showDiv('loginPage')
     hideDiv('registerPage')
+    document.getElementById("wrong-register").classList.add("hidden");
     document.getElementById('registerUsername').value = null;
     document.getElementById('registerAge').value  = null;
     document.getElementById('registerPassword').value  = null;
@@ -108,6 +120,7 @@ function addEventListenersNotAuth() {
   document.getElementById('changeToRegisterPageButton').addEventListener('click', function () {
     hideDiv('loginPage')
     showDiv('registerPage')
+    document.getElementById("wrong-password").classList.add("hidden");
     document.getElementById('loginUsername').value = null;
     document.getElementById('loginPassword').value  = null;
     document.getElementById("loginUsername").style.border = "";

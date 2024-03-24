@@ -9,7 +9,6 @@
 
 </div> -->
 
-<div id="game-session-container"></div>
 
 <!-- <div id="example" style="display: none;">ukhefhrehkwflj;fd</div>
 <button onclick="showExample()">show example</button> -->
@@ -17,10 +16,23 @@
 
 <div id="start-screen" class="start-screen">
   <div class="centered-container">
-    <!-- <button id="start-screen-btn" type="button" class="btn start-screen-btn btn-info btn-outline-info">Create a new Game</button> -->
     <button id="renderInv" class="btn start-screen-btn btn-info btn-outline-info" onclick="requestInvites()">See my invites</button>
+    <!-- <button id="renderInv" class="btn start-screen-btn btn-info btn-outline-info">See my invites</button> -->
   </div>
 </div>
+
+<div id="invites-screen" class="invites-screen hidden">
+  <div id="game-session-container" style="margin-left: 5vw;"></div>
+  <div class="centered-container">
+    <button id="renderNewInv" class="btn start-screen-btn btn-info btn-outline-info logout-btn" onclick="requestInvites()">Check for new invites</button>
+    <!-- <h2>Invites</h2>
+    <ul id="invitesList" class="invites-list">
+      <li class="invite">Invite from John</li>
+    </ul> -->
+  </div>
+</div>
+
+
 
 <!-- style="display: none;" -->
 <div id="waitingScreen" class="loader">
@@ -42,38 +54,10 @@
     <img src="https://www.course-api.com/images/people/person-1.jpeg" class="img-fluid circular-image"  alt="Player 2">
     <p>Player 2: Jane</p>
   </div>
-  <!-- <canvas id="pongCanvas" width="800" height="400"></canvas> -->
 </div>
-<canvas id="pongCanvas" width="800" height="400"></canvas>
+<!-- make canvas hidden until game starts -->
+<canvas id="pongCanvas" width="800" height="400" class="hidden">
 
+  
 
-
-        <style>
- #showGameField {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    text-align: center;
-  }
-
-  #pongCanvas {
-  width: 70vw;
-  height: 35vw;
-  /* display: block; Ensures the canvas is treated as a block element */
-  margin: 0 auto; /* Centers the canvas horizontally */
-}
-
-
-  .playerInfo {
-    flex: 1;
-    padding: 10px;
-  }
-
-  .example {
-    /* display: flex;
-    align-items: center;
-    justify-content: space-between; */
-    text-align: bottom;
-  }
-
-        </style>
+</canvas>

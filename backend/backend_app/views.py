@@ -96,6 +96,7 @@ def createGame(request, username, invited_username):
         print(f"new_matches")
         print(user.new_matches.all())
 
+
         return JsonResponse({"message": "Gameroom was created successfully", "id": new_gameroom.id})
     except MyUser.DoesNotExist:
         return JsonResponse({"error": "Invalid username"}, status=400)
