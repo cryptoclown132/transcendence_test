@@ -25,31 +25,34 @@ function handleDOMChangesProfileBtn() {
 
   const profileImageInput = document.querySelector('.change-profile-image input[type="file"]');
   
-  profileImageInput.addEventListener("change", function() {
-    const file = this.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = function(e) {
-        const profilePicture = document.querySelector('.profile-picture');
-        const imageSidebar = document.getElementById("imageSidebar");
+  if (profileImageInput) {
+    profileImageInput.addEventListener("change", function() {
+      const file = this.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = function(e) {
+          const profilePicture = document.querySelector('.profile-picture');
+          const imageSidebar = document.getElementById("imageSidebar");
 
-        profilePicture.src = e.target.result;
-        imageSidebar.src = e.target.result;
-      };
-    }
-  });
+          profilePicture.src = e.target.result;
+          imageSidebar.src = e.target.result;
+        };
+      }
+    });
+  }
 
 
-  // if (!editButton.hasEventListener) {
+  if (editButton) {
     editButton.addEventListener('click', function () {
       toggleEdit();
     });
     saveButton.addEventListener('click', function () {
       saveChanges();
     });
-  //   editButton.hasEventListener = true;
-  // }
+  }
+
+  if (globalStatsButton) {
     globalStatsButton.addEventListener('click', function() {
       console.log("gloabl statst");
       userStats.classList.add("hidden");
@@ -61,6 +64,7 @@ function handleDOMChangesProfileBtn() {
       globalStats.classList.add("hidden");
       userStats.classList.remove("hidden");
     });
+  }
 }
   
 const observerProfile = new MutationObserver(function(mutations) {

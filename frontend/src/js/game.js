@@ -1,7 +1,8 @@
 
 function gameDom() {
   // HERE EVENTLISTENERS FOR GAME:
-  document.getElementById('createGameButton').addEventListener('click', createGame);
+  if (document.getElementById('createGameButton'))
+    document.getElementById('createGameButton').addEventListener('click', createGame);
 }
 
 // HERE FUNCTIONS FOR GAME:

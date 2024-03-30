@@ -189,6 +189,9 @@ function chatDom() {
     
 
   })
+
+
+
 }
 
 
@@ -252,7 +255,7 @@ async function createPublicChat() {
     setErrorWithTimout('info_create_chat', 'Chat name cannot be empty',  5000)
     return;
   }
-
+  
   await sendDataToBackend('set_new_chat')
   let chatNameLabel = document.getElementById('new_chat_name');
   chatNameLabel.value = '';
@@ -278,31 +281,57 @@ async function renderProfile() {
 }
 
 async function handleClickedOnChatElement(chat_obj) {
-  showDiv('messageSide')
-  const chat_avatar = document.getElementById('chat_avatar')
-  if (!chat_obj.isPrivate) {
-    // avatar for group picture
-    chat_avatar.src = 'https://www.shareicon.net/data/512x512/2016/01/09/700702_network_512x512.png'
-  } else if (chat_obj.avatar) {
-    chat_avatar.src = chat_obj.avatar
-  } else {
-    // default avatar
-    chat_avatar.src = 'https://miro.medium.com/v2/resize:fit:720/1*W35QUSvGpcLuxPo3SRTH4w.png'
+  const chat_avatar = document.getElementById('chat_avatar');
+
+  if (!state.chatOpen || state.chatObj.chat_name !== chat_obj.chat_name) {
+    showDiv('messageSide')
+
+    // const chat_avatar = document.getElementById('chat_avatar')
+    if (!chat_obj.isPrivate) {
+      // avatar for group picture
+      chat_avatar.src = 'https://www.shareicon.net/data/512x512/2016/01/09/700702_network_512x512.png'
+    } else if (chat_obj.avatar) {
+      chat_avatar.src = chat_obj.avatar
+    } else {
+      // default avatar
+      chat_avatar.src = 'https://miro.medium.com/v2/resize:fit:720/1*W35QUSvGpcLuxPo3SRTH4w.png'
+    }
+    document.getElementById('right-heading-name').textContent = chat_obj.chat_name
+    if (chat_obj.isPrivate) {
+      document.getElementById('backdropPrivateProfileLabel').textContent = chat_obj.chat_name
+      document.getElementById('right-heading-name').dataset.state = 'private'
+    } else {
+      document.getElementById('backdropPublicProfileLabel').textContent = chat_obj.chat_name
+      document.getElementById('right-heading-name').dataset.state = 'public'
+    }
+    websocket_obj.chat_id = chat_obj.chat_id;
+    websocket_obj.chat_name = chat_obj.chat_name;
+    await sendDataToBackend('get_online_stats')
+    await sendDataToBackend('get_user_in_current_chat')
+    await sendDataToBackend('get_chat_messages')
+
+    
+    state.chatOpen = true;
   }
-  document.getElementById('right-heading-name').textContent = chat_obj.chat_name
-  if (chat_obj.isPrivate) {
-    document.getElementById('backdropPrivateProfileLabel').textContent = chat_obj.chat_name
-    document.getElementById('right-heading-name').dataset.state = 'private'
-  } else {
-    document.getElementById('backdropPublicProfileLabel').textContent = chat_obj.chat_name
-    document.getElementById('right-heading-name').dataset.state = 'public'
+  else if (state.chatOpen) {
+    hideDiv('messageSide');
+    document.getElementById('right-heading-name').textContent = "";
+    chat_avatar.src = "../img/ballWithEye.jpg";
+    state.chatOpen = false;
   }
-  websocket_obj.chat_id = chat_obj.chat_id;
-  websocket_obj.chat_name = chat_obj.chat_name;
-  await sendDataToBackend('get_online_stats')
-  await sendDataToBackend('get_user_in_current_chat')
-  await sendDataToBackend('get_chat_messages')
+  if (state.currPage !== 'group_chat' || state.chatObj.chat_name !== chat_obj.chat_name) {
+    state.currPage = 'group_chat';
+    state.chatObj = chat_obj;
+    handleButtonClick("");
+  }
 }
+
+
+
+
+
+
+
 
 async function renderMessages() {
   let myArray = websocket_obj.messages.message_data;
@@ -501,4 +530,14 @@ function parseTimeString(timeString) {
   }
   var [hours, minutes, day, month, year] = timeString.match(/\d+/g);
   return new Date(year, month - 1, day, hours, minutes);
+}
+
+
+function findOtherUserName(users, username) {
+	for (let i = 0; i < users.length; i++) {
+		if (users[i].user_name !== username) {
+			return users[i].user_name;
+		}
+	}
+	return null; // Return null if the username is not found
 }
