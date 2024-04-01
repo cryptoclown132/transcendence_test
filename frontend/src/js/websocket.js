@@ -1,5 +1,4 @@
 websocket_obj = {
-
   active_game: null,
 
   username: null,
@@ -201,8 +200,18 @@ async function establishWebsocketConnection() {
         await updateScore();
         break
       case 'game_over':
+        document.getElementById('game-screen').classList.add('hidden');
+        document.getElementById('pongCanvas').classList.add('hidden');
+        document.getElementById('winningScreen').classList.remove('hidden');
+
+        document.getElementById('fireworkCanvas').style.zIndex = 1;
+        activateFireworks();
+        
         console.log("GAME_OVER");
         // document.getElementById("waitingScreen").style.display = "block";
+
+        websocket_obj.game.hostname
+
         websocket_obj.game.host_score = 0
         websocket_obj.game.guest_score = 0
         websocket_obj.game.game_id = 0

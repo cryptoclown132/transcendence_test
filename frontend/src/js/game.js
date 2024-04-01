@@ -9,7 +9,6 @@ function gameDom() {
 
 
 async function joinGame(gameId) {
-  document.getElementById("renderNewInv").classList.add("hidden");
 
   console.log('In JoinGame');
   // document.getElementById("showGameField").style.display = "block";
@@ -19,11 +18,7 @@ async function joinGame(gameId) {
 
   const gameScreen = document.getElementById("game-screen");
 
-  const waitingScreen = document.getElementById("waitingScreen");
-
-
-
-  
+  // const waitingScreen = document.getElementById("waitingScreen");
 
   const canvas = document.getElementById("pongCanvas");
   const ctx = canvas.getContext("2d");
@@ -50,7 +45,6 @@ async function joinGame(gameId) {
 
   console.log("IN JOINGAME");
 
-
   async function updateCanvasSize() {
     const canvas = document.getElementById("pongCanvas");
     canvas.width = window.innerWidth * 0.75;  // Set canvas width to window width
@@ -70,7 +64,8 @@ async function joinGame(gameId) {
   // console.log("waitingScreen remove show");
 
   document.getElementById("pongCanvas").classList.remove("hidden");
-  gameScreen.classList.add("show");
+  gameScreen.classList.add('show');
+  gameScreen.classList.remove('hidden');
   await sendDataToBackend('init_game');
 
   document.addEventListener("keydown", async function(event) {
@@ -87,24 +82,17 @@ async function joinGame(gameId) {
           await sendDataToBackend('game_new_move');
           websocket_obj.game.key_code = 0;
       }
-
   });
 
   console.log('end of JoinGame');
 
-
 }
-
-// function requestInvites() {
-//   console.log('In requestInvites manyak');
-// }
 
 async function requestInvites() {
   document.getElementById("start-screen").classList.add("hidden");
   document.getElementById("invites-screen").classList.remove("hidden");
   await sendDataToBackend('request_invites');
 }
-
 
 
 async function renderInvites() {
@@ -120,10 +108,6 @@ async function renderInvites() {
     console.log(matches);
     const container = document.getElementById('game-session-container');
     container.innerHTML = generateHTMLContent(matches);
-    
-
-
-
 
   //   <ul style="justify-content: center; margin-left: 30vw;">
   //   <li style="color: #ecc85d; margin-bottom: 20px; margin-top: 20px;">Opponent: ${match.opponent_name}, Game ID: ${match.game_id}</li>
@@ -146,8 +130,6 @@ async function renderInvites() {
     return htmlContent;
   }
 
-
-
     // function generateHTMLContent(matches) {
     //   let htmlContent = '';
     //   if (matches.length > 0) {
@@ -165,14 +147,17 @@ async function renderInvites() {
     // }
 
     container.querySelectorAll('.join-game-btn').forEach(button => {
-      button.addEventListener('click', function() {
+      // let userName = '';
+
+
+      button.addEventListener('click', async function() {
+
         const gameId = this.getAttribute('data-gameid');
-        joinGame(gameId); // Call your function with gameId
+
+          joinGame(gameId); // Call your function with gameId
       });
     });
   }
-
-
 }
 
 // async function renderInvites() {
@@ -201,7 +186,6 @@ async function renderInvites() {
 // } catch (error) {
 //     console.error('There was a problem with the fetch operation:', error);
 // }
-
 
 
 
@@ -308,7 +292,6 @@ function drawPaddles() {
   right_pedal = canvas.height * websocket_obj.game.right_pedal / 2
 
 
-
   // console.log("left pedal: ", left_pedal);
   // console.log("right pedal: ", right_pedal);
 
@@ -329,7 +312,7 @@ function drawPaddles() {
     canvas.height / 4);
 
   ctx.fillRect(
-    canvas.width - canvas.width / 80,
+    canvas.width - 2 * canvas.width / 80,// canvas.width - canvas.width / 80,
     right_pedal,
     canvas.width / 80,
     canvas.height / 4);
@@ -456,31 +439,4 @@ observerGame.observe(document.body, { childList: true, subtree: true });
 
 
 
-
-  // Variables for countdown
-  let countdown = 3;
-  let countdownInterval;
-
-  // Function to draw countdown
-  function drawCountdown() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.font = '48px Arial';
-    ctx.fillStyle = 'black';
-    ctx.textAlign = 'center';
-    ctx.fillText(countdown, canvas.width / 2, canvas.height / 2);
-  }
-
-  // Function to start countdown animation
-  function startCountdownAnimation() {
-    countdownInterval = setInterval(() => {
-      countdown--;
-      if (countdown <= 0) {
-        clearInterval(countdownInterval);
-        // Start your game here after countdown
-        console.log('Game started!');
-        return;
-      }
-      drawCountdown();
-    }, 1000);
-  }
 

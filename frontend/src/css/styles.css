@@ -517,9 +517,6 @@ body, html {
 #pongCanvas {
   width: 70vw;
   height: 70vh;
-  /* display: block; Ensures the canvas is treated as a block element */
-  /* margin: 0 auto;  */
-  /* Centers the canvas horizontally */
   margin-left: 12vw;
   background-color: #f8efb5;
 }
@@ -529,18 +526,6 @@ body, html {
   background-color: #124457;
   transition: margin-left 0.5s ease;
 }
-
-/* .send-invite-btn {
-  color: #131615;
-  background-color: #ecc85d;
-  border-radius: 20px;
-}
-.send-invite-btn:hover {
-  color: #131615;
-  background-color: #ecc85d;
-  box-shadow: 0 0 20px 4px rgba(236, 200, 93, 0.8),
-  0 0 40px 8px rgba(236, 200, 93, 0.6);
-} */
 
 .start-screen {
   position: static;
@@ -562,7 +547,6 @@ body, html {
 
 .start-screen-btn {
   padding: 10px 20px;
-  /* background-color: var(--clr-primary-5); */
   color: #f8efb5;
   border: none;
   width: 200px; /* Example width */
@@ -586,7 +570,6 @@ body, html {
   align-items: center;
   height: 100%;
 }
-
 
 .game-invitation {
   background-color: #131615;
@@ -638,8 +621,6 @@ body, html {
 	align-items: center;
 	justify-content: space-between;
 	text-align: center;
-
-  /* height: 100%; */
 }
 
 .playerInfo {
@@ -655,7 +636,6 @@ body, html {
   margin-top: 20px;
   color: var(--clr-primary-5);
   color: #ef7267;
-  /* box-shadow: 0px 0px 10px hsl(205, 78%, 60%); */
   text-shadow: 2px 2px 4px #ef7267;
 }
 
@@ -672,10 +652,6 @@ body, html {
   text-align: center;
   padding: 15px;  
 }
-
-
-
-
 
 .loading-text {
   font-size: 24px;
@@ -698,6 +674,57 @@ body, html {
   80%, 100% { content: ''; }
 }
 
+.container-endScreen {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.name {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.name {
+  font-size: 40px;
+  color: #ecc85d;
+  z-index: 2;
+  text-shadow: 0 0 10px #ecc85d, 0 0 20px #ecc85d, 0 0 30px #ecc85d, 0 0 40px #ecc85d, 0 0 50px #ecc85d, 0 0 60px #ecc85d, 0 0 70px #ecc85d;
+  animation: glow 1.5s linear infinite;
+}
+
+@keyframes glow {
+  0% {
+    text-shadow: 0 0 10px #ecc85d, 0 0 20px #ecc85d, 0 0 30px #ecc85d, 0 0 40px #ecc85d, 0 0 50px #ecc85d, 0 0 60px #ecc85d, 0 0 70px #ecc85d;
+  }
+  50% {
+    text-shadow: none;
+  }
+  100% {
+    text-shadow: 0 0 10px #ecc85d, 0 0 20px #ecc85d, 0 0 30px #ecc85d, 0 0 40px #ecc85d, 0 0 50px #ecc85d, 0 0 60px #ecc85d, 0 0 70px #ecc85d;
+  }
+}
+
+.firework-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.end-screen {
+  position: static;
+  overflow: hidden;
+  margin: auto;
+  background: url("../img/elephantsTennis.jpg") no-repeat center;
+  background-size: cover;
+  height: 100%;
+}
+
 
 
 
@@ -705,7 +732,6 @@ body, html {
 
 /* adjust profile to be centered in the sidebar */
 .sidebar-btn-profile {
-  /* background-image: url('./ballWithRacket.jpg'); */
   background-size: cover;
   background-position: center;
 
@@ -713,29 +739,16 @@ body, html {
   display: flex;
   justify-content: center;
   align-items: center;
-  /* margin-left: 25%; */
-  /* padding: 15px;
-  margin-bottom: 35px;
-  margin-top: 35px; */
-  /* margin-left: 30%; */
   border-radius: 50%;
   width: 8vh;
   height: 8vh;
-  /* box-shadow: 0px 0px 10px #ef7267; */
-
-  /* margin-bottom: 1vh;
-  margin-top: 1vh; */
-  /* margin-left: 1vw; */
-
   font-size: 5vh;
-
 }
 /* .sidebar-btn-profile:hover {
   background: #ecc85d !important;
   border-radius: 10px;
   box-shadow: 0 0 10px 2px rgba(239, 114, 103, 0.8), 0 0 20px 6px rgba(239, 114, 103, 0.6), 0 0 30px 10px rgba(239, 114, 103, 0.4);
 } */
-
 
 
 
@@ -771,8 +784,6 @@ body, html {
   background-color: #131615;
   
   width: 60vw;
-  /* max-width: 600px; */
-  /* max-height: 800px; */
   margin: 50px auto;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -780,14 +791,10 @@ body, html {
 }
 
 .profile {
-  /* max-width: 600px; */
-  /* max-height: 800px; */
   margin: 50px auto;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   background-color: #ecc85d;
-
-  /* max-height: 400px; */
 }
 
 .profile-header {
@@ -828,7 +835,6 @@ body, html {
 }
 
 
-
 .profile-name {
   margin-top: 20px;
   font-size: 3vh;
@@ -860,8 +866,6 @@ body, html {
 }
 
 .stats-btn {
-  /* background-color: #005925; */
-  /* border: 1px solid silver; */
   color: #333;
   padding: 5px 10px;
   border-radius: 20px;

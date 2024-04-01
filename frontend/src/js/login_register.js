@@ -47,7 +47,7 @@ function loginUserButton() {
         establishWebsocketConnection()
       })
       .catch(error => {
-        setErrorWithTimout('info_login', error, 9999999)
+        // setErrorWithTimout('info_login', error, 9999999)
         console.log('Error during login:', error);
       });
 }
@@ -90,7 +90,7 @@ function RegisterUserButton() {
         establishWebsocketConnection()
       })
       .catch(error => {
-        setErrorWithTimout('info_register', error, 9999999)
+        // setErrorWithTimout('info_register', error, 9999999)
         console.log('Error during login:', error);
       });
 }
@@ -109,6 +109,9 @@ function changeToLoginPageButton() {
 }
 
 function changeToRegisterPageButton() {
+
+  console.log("change to register button clickedd");
+
 	hideDiv('loginPage')
     showDiv('registerPage')
     document.getElementById("wrong-password").classList.add("hidden");
@@ -116,6 +119,8 @@ function changeToRegisterPageButton() {
     document.getElementById('loginPassword').value  = null;
     document.getElementById("loginUsername").style.border = "";
     document.getElementById("loginPassword").style.border = "";
-    const info_login = document.getElementById('info_login')
-    info_login.style.display = 'none';
+   
+   
+    // const info_login = document.getElementById('info_login')
+    // info_login.style.display = 'none';
 }

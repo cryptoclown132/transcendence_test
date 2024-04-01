@@ -38,6 +38,9 @@ function chatDom() {
   })
 
   document.getElementById('goToChatButton').addEventListener('click', async function(){
+    console.log('secondChat show button');
+
+
     const clicked_user = document.getElementById('backdropClickedUserLabel')
     let chatNameToFind = clicked_user.textContent;
     let foundChat = websocket_obj.chat_data.find(chat=> chat.chat_name === chatNameToFind);
