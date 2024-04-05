@@ -1,24 +1,24 @@
 
 function chatDom() {
-  document.getElementById('sendMessageButton').addEventListener('click', async function () {
-    const isBlocked = websocket_obj.blocked_by && websocket_obj.blocked_by.includes(websocket_obj.chat_name);
-    if (isBlocked) {
-      $('#userBlockedYouWarning').modal('show');
-      return
-    }
-    websocket_obj.message = document.getElementById('messageInput').value
-    websocket_obj.sender = websocket_obj.username
-    document.getElementById('messageInput').value = ''
-    await sendDataToBackend('send_chat_message')
-    await sendDataToBackend('get_online_stats')
-    await sendDataToBackend('get_chat_messages')
-  });
+  // document.getElementById('sendMessageButton').addEventListener('click', async function () {
+  //   const isBlocked = websocket_obj.blocked_by && websocket_obj.blocked_by.includes(websocket_obj.chat_name);
+  //   if (isBlocked) {
+  //     $('#userBlockedYouWarning').modal('show');
+  //     return
+  //   }
+  //   websocket_obj.message = document.getElementById('messageInput').value
+  //   websocket_obj.sender = websocket_obj.username
+  //   document.getElementById('messageInput').value = ''
+  //   await sendDataToBackend('send_chat_message')
+  //   await sendDataToBackend('get_online_stats')
+  //   await sendDataToBackend('get_chat_messages')
+  // });
 
-  document.getElementById('invite_user_button').addEventListener('click', async function () {
-    const invited_user_name = document.getElementById('invite_user').value
-    document.getElementById('invite_user').value = ''
-    await inviteUser(invited_user_name)
-  })
+  // document.getElementById('invite_user_button').addEventListener('click', async function () {
+  //   const invited_user_name = document.getElementById('invite_user').value
+  //   document.getElementById('invite_user').value = ''
+  //   await inviteUser(invited_user_name)
+  // })
 
   // document.getElementById('logoutButton').addEventListener('click', async function () {
   //   await logoutUser()
@@ -37,26 +37,26 @@ function chatDom() {
     public_chat_backdrop.style.opacity = 1;
   })
 
-  document.getElementById('goToChatButton').addEventListener('click', async function(){
-    console.log('secondChat show button');
+  // document.getElementById('goToChatButton').addEventListener('click', async function(){
+  //   console.log('secondChat show button');
 
 
-    const clicked_user = document.getElementById('backdropClickedUserLabel')
-    let chatNameToFind = clicked_user.textContent;
-    let foundChat = websocket_obj.chat_data.find(chat=> chat.chat_name === chatNameToFind);
-    if (foundChat) {
-      await handleClickedOnChatElement(foundChat);
-      document.getElementById('publicChatModal').style.opacity = 1
-      $('#staticBackdropProfile').modal('hide');
-      $('#backdropClickedUser').modal('hide');
-    } else {
-      websocket_obj.new_private_chat_name = chatNameToFind
-      await sendDataToBackend('set_new_private_chat')
-      await sendDataToBackend('get_current_users_chats')
-      document.getElementById('goToChatButton').textContent = 'Go to Chat'
-      hideDiv('create_chat_alert')
-    }
-  })
+  //   const clicked_user = document.getElementById('backdropClickedUserLabel')
+  //   let chatNameToFind = clicked_user.textContent;
+  //   let foundChat = websocket_obj.chat_data.find(chat=> chat.chat_name === chatNameToFind);
+  //   if (foundChat) {
+  //     await handleClickedOnChatElement(foundChat);
+  //     document.getElementById('publicChatModal').style.opacity = 1
+  //     $('#staticBackdropProfile').modal('hide');
+  //     $('#backdropClickedUser').modal('hide');
+  //   } else {
+  //     websocket_obj.new_private_chat_name = chatNameToFind
+  //     await sendDataToBackend('set_new_private_chat')
+  //     await sendDataToBackend('get_current_users_chats')
+  //     document.getElementById('goToChatButton').textContent = 'Go to Chat'
+  //     hideDiv('create_chat_alert')
+  //   }
+  // })
 
   document.getElementById('blockUserButton').addEventListener('click', async function() {
     await sendDataToBackend('block_user')
@@ -286,6 +286,7 @@ async function renderProfile() {
 async function handleClickedOnChatElement(chat_obj) {
   const chat_avatar = document.getElementById('chat_avatar');
 
+  console.log('which chat is it: ', chat_obj.chat_name);
   if (!state.chatOpen || state.chatObj.chat_name !== chat_obj.chat_name) {
     showDiv('messageSide')
 
@@ -309,6 +310,10 @@ async function handleClickedOnChatElement(chat_obj) {
     }
     websocket_obj.chat_id = chat_obj.chat_id;
     websocket_obj.chat_name = chat_obj.chat_name;
+
+    // console.log('chat obj### : ', chat_obj.chat_id);
+    // console.log('chat name### : ', chat_obj.chat_name);
+
     await sendDataToBackend('get_online_stats')
     await sendDataToBackend('get_user_in_current_chat')
     await sendDataToBackend('get_chat_messages')
@@ -317,10 +322,12 @@ async function handleClickedOnChatElement(chat_obj) {
     state.chatOpen = true;
   }
   else if (state.chatOpen) {
+    console.log('goes back to default and closes');
     hideDiv('messageSide');
     document.getElementById('right-heading-name').textContent = "";
     chat_avatar.src = "../img/ballWithEye.jpg";
     state.chatOpen = false;
+    window.history.back();
   }
   if (state.currPage !== 'group_chat' || state.chatObj.chat_name !== chat_obj.chat_name) {
     state.currPage = 'group_chat';

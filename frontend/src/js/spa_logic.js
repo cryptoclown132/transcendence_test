@@ -21,13 +21,10 @@ function handleButtonClick(url) {
 
 
 state.bodyText = document.body.innerHTML;
-// console.log(state.bodyText);
-
 
 // state.currPage = url;
   // window.history.pushState(state, null, "");
 window.history.pushState(state, null, url);
-  // render(state);
 }
   
   
@@ -37,33 +34,28 @@ window.onpopstate = async function (event) {
 		state = event.state;
 	// let stateJson = JSON.stringify(event.state);
 
-  // console.log(state.chatObj);
-
-  console.log('currpage rt:', state.currPage);
 	if (state.currPage === 'chat' || state.currPage === 'group_chat') {
-    console.log('inside chat if');
-
 		await sendDataToBackend('get_current_users_chats')
 		await sendDataToBackend('get_blocked_by_user')
 		await sendDataToBackend('get_blocked_user') // NEW since 02.02
-
-
-    // showSiteHideOthers('chat')
-    // hideDiv('messageSide');
-    // document.getElementById('right-heading-name').textContent = "";
-    // chat_avatar.src = "../img/ballWithEye.jpg";
-
-    // state.bodyText 
   }
 	if (state.currPage === 'group_chat') {
-    console.log('inside group chat if')
+    if (state.chatOpen)
+      state.chatOpen = false;
+    else
+      state.chatOpen = true;
 		await handleClickedOnChatElement(state.chatObj);
   }
   if (state.currPage === 'invites')
     await requestInvites();
 
-	render(state);
-	// attachEventListeners();
+  render(state);
+  if (state.currPage === 'chat') {
+    hideDiv('messageSide');
+    document.getElementById('right-heading-name').textContent = "";
+    chat_avatar.src = "../img/ballWithEye.jpg";
+  }
+// attachEventListeners();
 };
 
 async function handleClickEvent(event) {
@@ -75,16 +67,8 @@ async function handleClickEvent(event) {
   else if (event.target.closest('#statsButton'))
 		showSiteHideOthers('statsSite');
   else if (event.target.closest('#showChatButton')){
-    await sendDataToBackend('get_current_users_chats')
-    await sendDataToBackend('get_blocked_by_user')
-    await sendDataToBackend('get_blocked_user') // NEW since 02.02
-    
-    console.log(document.body.innerHTML);
-    showSiteHideOthers('chat')
-    hideDiv('messageSide');
-    document.getElementById('right-heading-name').textContent = "";
-    chat_avatar.src = "../img/ballWithEye.jpg";
-		// await chatSiteClicked();
+    console.log('chat clicked def');
+		await chatSiteClicked();
   }
   else if (event.target.closest('#profileButton'))
 		showSiteHideOthers('profileSite');
@@ -98,18 +82,7 @@ async function handleClickEvent(event) {
     gameSiteClicked();
 
   else if (event.target.closest('#sendMessageButton')) {
-    const isBlocked = websocket_obj.blocked_by && websocket_obj.blocked_by.includes(websocket_obj.chat_name);
-    if (isBlocked) {
-      $('#userBlockedYouWarning').modal('show');
-      return
-    }
-    websocket_obj.message = document.getElementById('messageInput').value
-    websocket_obj.sender = websocket_obj.username
-    document.getElementById('messageInput').value = ''
-    await sendDataToBackend('send_chat_message')
-    await sendDataToBackend('get_online_stats')
-    await sendDataToBackend('get_chat_messages')
-    // await sendMessage();
+    await sendMessage();
   }
   else if (event.target.closest('#invite_user_button')) {
       const invited_user_name = document.getElementById('invite_user').value
@@ -125,22 +98,8 @@ async function handleClickEvent(event) {
       public_chat_backdrop.style.opacity = 1;
     }
   else if (event.target.closest('#goToChatButton')) {
-    const clicked_user = document.getElementById('backdropClickedUserLabel')
-    let chatNameToFind = clicked_user.textContent;
-    let foundChat = websocket_obj.chat_data.find(chat=> chat.chat_name === chatNameToFind);
-    if (foundChat) {
-      await handleClickedOnChatElement(foundChat);
-      document.getElementById('publicChatModal').style.opacity = 1
-      $('#staticBackdropProfile').modal('hide');
-      $('#backdropClickedUser').modal('hide');
-    } else {
-      websocket_obj.new_private_chat_name = chatNameToFind
-      await sendDataToBackend('set_new_private_chat')
-      await sendDataToBackend('get_current_users_chats')
-      document.getElementById('goToChatButton').textContent = 'Go to Chat'
-      hideDiv('create_chat_alert')
-    }
-      // await openChat();
+    console.log('chat opende clicked xxxxxxxxxxxxx');
+    await openChat();
 	}
   else if (event.target.closest('#blockUserButton')) {
       await sendDataToBackend('block_user')
@@ -160,37 +119,8 @@ async function handleClickEvent(event) {
         await showPublicChatModal()
 	}
   else if (event.target.closest('#challengeUserToGame')) {
-      console.log('In inviting through chat')
-      // const username = websocket_obj.username;
-      sendDataToBackend('get_user_in_current_chat')
-      console.log('get_user_in_current_chat ', websocket_obj.userInCurrentChat)
-
-      const invited_username = findOtherUserName(websocket_obj.userInCurrentChat, websocket_obj.username);
-      console.log('invited_username ', invited_username)
-      // const invited_username = 'test'
-      websocket_obj.invited_id = invited_username 
-      try {
-        const response = await fetch(`${window.location.origin}/user/game/create/${websocket_obj.username}/${websocket_obj.invited_id}`);
-        const data = await response.json();
-        console.log('DATA ', data);
-        // websocket_obj.active_game = data.id;
-    
-        if (response.ok) {
-        displayError(null);
-        websocket_obj.active_game = data.id;
-        // console.log(data.id); // Check the console for the result
-    
-        // Perform actions on successful login, e.g., set isLoggedIn and userData
-            console.log(data);
-        } else {
-        displayError(data.error);
-        }
-      } catch (error) {
-        console.error('Error fetching user data:', error);
-        displayError('Error fetching user data');
-      }
-    }
-	
+    await challengeUserClicked();
+  }
   else if (event.target.closest('#loginUserButton'))
     loginUserButton();
   else if (event.target.closest('#RegisterUserButton'))
@@ -223,6 +153,8 @@ async function chatSiteClicked() {
   hideDiv('messageSide');
   document.getElementById('right-heading-name').textContent = "";
   chat_avatar.src = "../img/ballWithEye.jpg";
+  
+  state.chatOpen = false;
 }
 
 function invSiteClicked() {
@@ -259,5 +191,37 @@ async function openChat() {
     await sendDataToBackend('get_current_users_chats')
     document.getElementById('goToChatButton').textContent = 'Go to Chat'
     hideDiv('create_chat_alert')
+  }
+}
+
+async function challengeUserClicked() {
+  console.log('In inviting through chat')
+  // const username = websocket_obj.username;
+  sendDataToBackend('get_user_in_current_chat')
+  console.log('get_user_in_current_chat ', websocket_obj.userInCurrentChat)
+
+  const invited_username = findOtherUserName(websocket_obj.userInCurrentChat, websocket_obj.username);
+  console.log('invited_username ', invited_username)
+  // const invited_username = 'test'
+  websocket_obj.invited_id = invited_username 
+  try {
+    const response = await fetch(`${window.location.origin}/user/game/create/${websocket_obj.username}/${websocket_obj.invited_id}`);
+    const data = await response.json();
+    console.log('DATA ', data);
+    // websocket_obj.active_game = data.id;
+
+    if (response.ok) {
+    displayError(null);
+    websocket_obj.active_game = data.id;
+    // console.log(data.id); // Check the console for the result
+
+    // Perform actions on successful login, e.g., set isLoggedIn and userData
+        console.log(data);
+    } else {
+    displayError(data.error);
+    }
+  } catch (error) {
+    console.error('Error fetching user data:', error);
+    displayError('Error fetching user data');
   }
 }
