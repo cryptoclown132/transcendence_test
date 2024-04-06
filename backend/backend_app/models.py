@@ -27,5 +27,6 @@ class Message(models.Model):
         return self.timestamp.strftime('%H:%M %d.%m.%Y')
 
 class Game(models.Model):
+    # alias = models.CharField("name", max_length=100)
     hostId = models.CharField("hostId", max_length=69, default=None, blank=True, null=True)
     guestId = models.CharField("guestId", max_length=69, default=None, blank=True, null=True)

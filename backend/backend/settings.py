@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 import os
 from pathlib import Path
 
+JWT_SECRET = os.environ.get('JWT_SECRET')
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 # == /Users/mmensing/Desktop/CODE/TRANSCENDENCE/TEST_ENVIRONMENT/backend
@@ -23,18 +25,20 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-!l1#n)(q==6k0w3#*w92ilmkltpzf9d1ep4*39yiqz*$$z%ve^'
 
+JWT_SECRET = os.environ.get('JWT_SECRET')
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 # -> prints (sensitive) data to the console, should not be readable by others
 
-ALLOWED_HOSTS = [os.environ.get('CURRENT_HOST'), 'backend']
+ALLOWED_HOSTS = [os.environ.get('CURRENT_HOST'), 'backend', 'localhost']
 
 # Application definition
 INSTALLED_APPS = [
     'daphne',  # HAS to be on top
 
     'django.contrib.admin',
-    'django.contrib.auth',  # comes with authentication tools! :))
+    'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
@@ -110,16 +114,13 @@ if current_host:
 else:
     CSRF_TRUSTED_ORIGINS = []
 
-
-# https://docs.djangoproject.com/en/4.2/ref/settings/#databases
-
 DATABASES = {
     'default': {
         'ENGINE': os.environ.get('POSTGRES_ENGINE'),
         'NAME': os.environ.get('POSTGRES_DB'),
         'USER': os.environ.get('POSTGRES_USER'),
         'PASSWORD': os.environ.get('POSTGRES_PASSWORD'),
-        'HOST': os.environ.get('POSTGRES_HOST'),
+        'HOST': 'game_chat_db',
         'PORT': os.environ.get('POSTGRES_PORT')
     }
 }
