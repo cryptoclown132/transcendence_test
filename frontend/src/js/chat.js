@@ -24,18 +24,18 @@ function chatDom() {
   //   await logoutUser()
   // })
 
-  document.getElementById('create_public_chat_button').addEventListener('click', async function() {
-    await createPublicChat()
-  })
+  // document.getElementById('create_public_chat_button').addEventListener('click', async function() {
+  //   await createPublicChat()
+  // })
 
-  document.getElementById('create_private_chat_button').addEventListener('click', async function() {
-    await createPrivateChat()
-  })
+  // document.getElementById('create_private_chat_button').addEventListener('click', async function() {
+  //   await createPrivateChat()
+  // })
 
-  document.getElementById('close_button_clicked_user').addEventListener('click', async function() {
-    const public_chat_backdrop = document.getElementById('publicChatModal')
-    public_chat_backdrop.style.opacity = 1;
-  })
+  // document.getElementById('close_button_clicked_user').addEventListener('click', async function() {
+  //   const public_chat_backdrop = document.getElementById('publicChatModal')
+  //   public_chat_backdrop.style.opacity = 1;
+  // })
 
   // document.getElementById('goToChatButton').addEventListener('click', async function(){
   //   console.log('secondChat show button');
@@ -58,26 +58,26 @@ function chatDom() {
   //   }
   // })
 
-  document.getElementById('blockUserButton').addEventListener('click', async function() {
-    await sendDataToBackend('block_user')
-    $('#backdropPrivateProfile').modal('hide');
-  })
+  // document.getElementById('blockUserButton').addEventListener('click', async function() {
+  //   await sendDataToBackend('block_user')
+  //   $('#backdropPrivateProfile').modal('hide');
+  // })
 
-  document.getElementById('unblockUserButton').addEventListener('click',  async function () {
-    await sendDataToBackend('unblock_user')
-    $('#backdropPrivateProfile').modal('hide');
-  })
+  // document.getElementById('unblockUserButton').addEventListener('click',  async function () {
+  //   await sendDataToBackend('unblock_user')
+  //   $('#backdropPrivateProfile').modal('hide');
+  // })
 
-  document.getElementById('right-heading-name').addEventListener('click', async function() {
-    const state = document.getElementById('right-heading-name').dataset.state
-    console.log('STATE: ', state)
+  // document.getElementById('right-heading-name').addEventListener('click', async function() {
+  //   const state = document.getElementById('right-heading-name').dataset.state
+  //   console.log('STATE: ', state)
 
-    if (state === 'private') {
-      await showPrivateChatModal()
-    } else {
-      await showPublicChatModal()
-    }
-  })
+  //   if (state === 'private') {
+  //     await showPrivateChatModal()
+  //   } else {
+  //     await showPublicChatModal()
+  //   }
+  // })
 
 
 //   document.getElementById('challengeUserToGame').addEventListener('click', async function() {
@@ -128,70 +128,70 @@ function chatDom() {
 
 
 
-  document.getElementById('challengeUserToGame').addEventListener('click', async function() {
+  // document.getElementById('challengeUserToGame').addEventListener('click', async function() {
     
-    console.log('In inviting through chat')
-    // const username = websocket_obj.username;
-    sendDataToBackend('get_user_in_current_chat')
-    console.log('get_user_in_current_chat ', websocket_obj.userInCurrentChat)
+  //   console.log('In inviting through chat')
+  //   // const username = websocket_obj.username;
+  //   sendDataToBackend('get_user_in_current_chat')
+  //   console.log('get_user_in_current_chat ', websocket_obj.userInCurrentChat)
 
-    function findOtherUserName(users, username) {
-      for (let i = 0; i < users.length; i++) {
-          if (users[i].user_name !== username) {
-              return users[i].user_name;
-          }
-      }
-      return null; // Return null if the username is not found
-  }
-    const invited_username = findOtherUserName(websocket_obj.userInCurrentChat, websocket_obj.username);
-    console.log('invited_username ', invited_username)
-    // const invited_username = 'test'
-    websocket_obj.invited_id = invited_username
-    
-    try {
-      const response = await fetch(`${window.location.origin}/user/game/create/${websocket_obj.username}/${websocket_obj.invited_id}`);
-      const data = await response.json();
-  
-  
-  
-      console.log('DATA ', data);
-      // websocket_obj.active_game = data.id;
-  
-      if (response.ok) {
-      displayError(null);
-      websocket_obj.active_game = data.id;
-      // console.log(data.id); // Check the console for the result
-  
-      // Perform actions on successful login, e.g., set isLoggedIn and userData
-          console.log(data);
-      } else {
-      displayError(data.error);
-      }
-    } catch (error) {
-      console.error('Error fetching user data:', error);
-      displayError('Error fetching user data');
-    }
-  
-
-  //   try {
-  
-
-  //     const response = await fetch(`${window.location.origin}/user/game/render/invites/${username}/`);
-  //     const htmlContent = await response.text();
-  
-  //     const container = document.getElementById('game-session-container');
-  //     container.innerHTML = htmlContent;
-  
-  // } catch (error) {
-  //     console.error('There was a problem with the fetch operation:', error);
+  //   function findOtherUserName(users, username) {
+  //     for (let i = 0; i < users.length; i++) {
+  //         if (users[i].user_name !== username) {
+  //             return users[i].user_name;
+  //         }
+  //     }
+  //     return null; // Return null if the username is not found
   // }
+  //   const invited_username = findOtherUserName(websocket_obj.userInCurrentChat, websocket_obj.username);
+  //   console.log('invited_username ', invited_username)
+  //   // const invited_username = 'test'
+  //   websocket_obj.invited_id = invited_username
+    
+  //   try {
+  //     const response = await fetch(`${window.location.origin}/user/game/create/${websocket_obj.username}/${websocket_obj.invited_id}`);
+  //     const data = await response.json();
+  
+  
+  
+  //     console.log('DATA ', data);
+  //     // websocket_obj.active_game = data.id;
+  
+  //     if (response.ok) {
+  //     displayError(null);
+  //     websocket_obj.active_game = data.id;
+  //     // console.log(data.id); // Check the console for the result
+  
+  //     // Perform actions on successful login, e.g., set isLoggedIn and userData
+  //         console.log(data);
+  //     } else {
+  //     displayError(data.error);
+  //     }
+  //   } catch (error) {
+  //     console.error('Error fetching user data:', error);
+  //     displayError('Error fetching user data');
+  //   }
   
 
-    // await sendDataToBackend('new_invite')
+  // //   try {
+  
+
+  // //     const response = await fetch(`${window.location.origin}/user/game/render/invites/${username}/`);
+  // //     const htmlContent = await response.text();
+  
+  // //     const container = document.getElementById('game-session-container');
+  // //     container.innerHTML = htmlContent;
+  
+  // // } catch (error) {
+  // //     console.error('There was a problem with the fetch operation:', error);
+  // // }
+  
+
+  //   // await sendDataToBackend('new_invite')
 
     
 
-  })
+  // })
 
 
 
@@ -550,4 +550,133 @@ function findOtherUserName(users, username) {
 		}
 	}
 	return null; // Return null if the username is not found
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+async function chatSiteClicked() {
+  await sendDataToBackend('get_current_users_chats')
+  await sendDataToBackend('get_blocked_by_user')
+  await sendDataToBackend('get_blocked_user') // NEW since 02.02
+  showSiteHideOthers('chat')
+  hideDiv('messageSide');
+  document.getElementById('right-heading-name').textContent = "";
+  chat_avatar.src = "../img/ballWithEye.jpg";
+  
+  state.chatOpen = false;
+}
+
+function invSiteClicked() {
+  state.currPage = 'invites';
+  handleButtonClick("");
+}
+
+async function sendMessage() {
+  const isBlocked = websocket_obj.blocked_by && websocket_obj.blocked_by.includes(websocket_obj.chat_name);
+    if (isBlocked) {
+      $('#userBlockedYouWarning').modal('show');
+      return
+    }
+    websocket_obj.message = document.getElementById('messageInput').value
+    websocket_obj.sender = websocket_obj.username
+    document.getElementById('messageInput').value = ''
+    await sendDataToBackend('send_chat_message')
+    await sendDataToBackend('get_online_stats')
+    await sendDataToBackend('get_chat_messages')
+}
+
+async function openChat() {
+  const clicked_user = document.getElementById('backdropClickedUserLabel')
+  let chatNameToFind = clicked_user.textContent;
+  let foundChat = websocket_obj.chat_data.find(chat=> chat.chat_name === chatNameToFind);
+  if (foundChat) {
+    await handleClickedOnChatElement(foundChat);
+    document.getElementById('publicChatModal').style.opacity = 1
+    $('#staticBackdropProfile').modal('hide');
+    $('#backdropClickedUser').modal('hide');
+  } else {
+    websocket_obj.new_private_chat_name = chatNameToFind
+    await sendDataToBackend('set_new_private_chat')
+    await sendDataToBackend('get_current_users_chats')
+    document.getElementById('goToChatButton').textContent = 'Go to Chat'
+    hideDiv('create_chat_alert')
+  }
+}
+
+async function challengeUserClicked() {
+  console.log('In inviting through chat')
+  // const username = websocket_obj.username;
+  sendDataToBackend('get_user_in_current_chat')
+  console.log('get_user_in_current_chat ', websocket_obj.userInCurrentChat)
+
+  const invited_username = findOtherUserName(websocket_obj.userInCurrentChat, websocket_obj.username);
+  console.log('invited_username ', invited_username)
+  // const invited_username = 'test'
+  websocket_obj.invited_id = invited_username 
+  try {
+    const response = await fetch(`${window.location.origin}/user/game/create/${websocket_obj.username}/${websocket_obj.invited_id}`);
+    const data = await response.json();
+    console.log('DATA ', data);
+    // websocket_obj.active_game = data.id;
+
+    if (response.ok) {
+    displayError(null);
+    websocket_obj.active_game = data.id;
+    // console.log(data.id); // Check the console for the result
+
+    // Perform actions on successful login, e.g., set isLoggedIn and userData
+        console.log(data);
+    } else {
+    displayError(data.error);
+    }
+  } catch (error) {
+    console.error('Error fetching user data:', error);
+    displayError('Error fetching user data');
+  }
+}
+
+async function inviteUserClicked() {
+  const invited_user_name = document.getElementById('invite_user').value
+  document.getElementById('invite_user').value = ''
+  await inviteUser(invited_user_name)
+}
+
+async function closeButtonClicked() {
+  const public_chat_backdrop = document.getElementById('publicChatModal')
+  public_chat_backdrop.style.opacity = 1;
+}
+
+async function blockUserClicked() {
+  await sendDataToBackend('block_user')
+  $('#backdropPrivateProfile').modal('hide');
+}
+
+async function unblockUserClicked() {
+  await sendDataToBackend('unblock_user')
+  $('#backdropPrivateProfile').modal('hide');
+}
+
+async function rightHeadingClicked() {
+  const state = document.getElementById('right-heading-name').dataset.state
+  console.log('STATE: ', state)
+
+  if (state === 'private')
+    await showPrivateChatModal()
+  else
+    await showPublicChatModal()
 }

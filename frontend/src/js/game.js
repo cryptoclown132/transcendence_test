@@ -440,3 +440,12 @@ observerGame.observe(document.body, { childList: true, subtree: true });
 
 
 
+function gameSiteClicked() {
+  document.getElementById('start-screen').classList.remove('hidden');
+  document.getElementById('invites-screen').classList.add('hidden');
+  document.getElementById('waitingScreen').classList.add('hidden');
+  document.getElementById('game-screen').classList.add('hidden');
+  document.getElementById('winningScreen').classList.add('hidden');
+  document.getElementById('endScreen').classList.add('hidden');
+  showSiteHideOthers('gameSite');
+}

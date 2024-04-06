@@ -16,6 +16,9 @@ function addEventListenersIsAuth() {
 function showSiteHideOthers(site_to_show) {
   console.log(site_to_show);
 
+  if (state.currPage === site_to_show)
+    return ;
+
   const sites = ['gameSite', 'statsSite', 'homeSite', 'chat', 'profileSite', 'creatorsSite'];//gameSiteStart, gameSiteInvite, gameSitePlay, gameSiteEnd
   sites.forEach(site => {
     if (site === site_to_show) showDiv(site)
